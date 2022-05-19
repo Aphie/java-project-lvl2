@@ -6,6 +6,9 @@
     "allDeclaredMethods" : true,
     "allPublicMethods" : true,
     "fields" : [
+      { "name" : "filepath1" },
+      { "name" : "filepath2" },
+      { "name" : "format" },
       { "name" : "usageHelpRequested" },
       { "name" : "versionRequested" }
     ]
