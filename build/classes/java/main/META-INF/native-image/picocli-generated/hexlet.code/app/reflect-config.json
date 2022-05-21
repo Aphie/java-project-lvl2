@@ -12,27 +12,5 @@
       { "name" : "usageHelpRequested" },
       { "name" : "versionRequested" }
     ]
-  },
-  {
-    "name" : "picocli.CommandLine$AutoHelpMixin",
-    "allDeclaredConstructors" : true,
-    "allPublicConstructors" : true,
-    "allDeclaredMethods" : true,
-    "allPublicMethods" : true,
-    "fields" : [
-      { "name" : "helpRequested" },
-      { "name" : "versionRequested" }
-    ]
-  },
-  {
-    "name" : "picocli.CommandLine$HelpCommand",
-    "allDeclaredConstructors" : true,
-    "allPublicConstructors" : true,
-    "allDeclaredMethods" : true,
-    "allPublicMethods" : true,
-    "fields" : [
-      { "name" : "commands" },
-      { "name" : "helpRequested" }
-    ]
   }
 ]

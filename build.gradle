@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'application'
+    id 'checkstyle'
 }
 
 group 'hexlet.code'
@@ -32,3 +33,17 @@ compileJava {
     //options.release = 17
     options.compilerArgs += ["-Aproject=${project.group}/${project.name}"]
 }
+
+//checkstyle {
+//    // project.ext.checkstyleVersion = '8.20'
+//    configFile = file("${rootDir}/checkstyle.xml")
+//}
+//
+//task Checkstyle(type: Checkstyle) {
+//    configFile = file("${rootDir}/checkstyle.xml")
+//    source 'src/main/java/hexlet.code'
+//    ignoreFailures false
+//    showViolations true
+//    include '**/*.java'
+//    classpath = files()
+//}
