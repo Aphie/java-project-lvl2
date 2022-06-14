@@ -18,10 +18,10 @@ jobs:
           java-version: '17'
           cache: 'gradle'
 
-      - name: Build project
+      - name: build project
         run: make project-build
 
-      - name: Test & publish code coverage
+      - name: test & publish code coverage
         uses: paambaati/codeclimate-action@v2.5.7
         env:
           # Set CC_TEST_REPORTER_ID as secret of your repo
