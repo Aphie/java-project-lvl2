@@ -24,7 +24,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-java@v2
         with:
           distribution: 'temurin'
           java-version: '17'
@@ -36,5 +35,5 @@ jobs:
             CC_TEST_REPORTER_ID: 0934b5229b53b57aba63ef708704fe47bc2e55069b23745ae8700386ed6926b1
             JACOCO_SOURCE_PATH: "${{github.workspace}}/src/main/java"
           with:
-            coverageCommand: make test
+            coverageCommand: make run-test
             coverageLocations: ${{github.workspace}}//build/jacocoHtml/index.html:jacoco
