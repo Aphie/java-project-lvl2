@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'application'
     id 'checkstyle'
+    id 'jacoco'
 }
 
 group 'hexlet.code'
@@ -23,6 +24,7 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
 }
 
 application {
@@ -34,16 +36,28 @@ compileJava {
     options.compilerArgs += ["-Aproject=${project.group}/${project.name}"]
 }
 
-//checkstyle {
-//    // project.ext.checkstyleVersion = '8.20'
-//    configFile = file("${rootDir}/checkstyle.xml")
-//}
-//
-//task Checkstyle(type: Checkstyle) {
-//    configFile = file("${rootDir}/checkstyle.xml")
-//    source 'src/main/java/hexlet.code'
-//    ignoreFailures false
-//    showViolations true
-//    include '**/*.java'
-//    classpath = files()
-//}
+checkstyle {
+    // project.ext.checkstyleVersion = '8.20'
+    configFile = file("${rootDir}/checkstyle.xml")
+}
+
+jacoco {
+    toolVersion = "0.8.7"
+    reportsDirectory = layout.buildDirectory.dir('jacocoReportDir')
+    applyTo run
+}
+
+tasks.register('applicationCodeCoverageReport', JacocoReport) {
+    executionData run
+    sourceSets sourceSets.main
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+    }
+}
+
