@@ -30,4 +30,4 @@ jobs:
         with:
           # The report file must be there, otherwise Code Climate won't find it
           coverageCommand: make run-test
-          coverageLocations: ${{github.workspace}}/build/jacocoHtml/index.html:jacoco
+          coverageLocations: ${{github.workspace}}/build/jacoco/test/jacocoTestReport.xml:jacoco
