@@ -20,7 +20,7 @@ public class DifferTest {
                 + "  + timeout: 20\n"
                 + "  + verbose: true\n"
                 + "}";
-        Assertions.assertEquals(expected, Differ.generate(filePath1,filePath2));
+        Assertions.assertEquals(expected, Differ.generate(filePath1, filePath2));
     }
 
     @Test
@@ -32,7 +32,7 @@ public class DifferTest {
                 + "  + timeout: 20\n"
                 + "  + verbose: true\n"
                 + "}";
-        Assertions.assertEquals(expected, Differ.generate(filePath1,filePath2));
+        Assertions.assertEquals(expected, Differ.generate(filePath1, filePath2));
     }
 
     @Test
@@ -44,7 +44,7 @@ public class DifferTest {
                 + "  - host: hexlet.io\n"
                 + "  - timeout: 50\n"
                 + "}";
-        Assertions.assertEquals(expected, Differ.generate(filePath1,filePath2));
+        Assertions.assertEquals(expected, Differ.generate(filePath1, filePath2));
     }
 
     @Test
@@ -53,7 +53,7 @@ public class DifferTest {
         Path filePath2 = Paths.get("src/test/resources/differTestBothFileEmpty_file2.json");
 
         String expected = new String();
-        Assertions.assertEquals(expected, Differ.generate(filePath1,filePath2));
+        Assertions.assertEquals(expected, Differ.generate(filePath1, filePath2));
     }
 
     @Test
@@ -67,7 +67,7 @@ public class DifferTest {
                 + "    proxy: 123.234.53.22\n"
                 + "    timeout: 50\n"
                 + "}";
-        Assertions.assertEquals(expected, Differ.generate(filePath1,filePath2));
+        Assertions.assertEquals(expected, Differ.generate(filePath1, filePath2));
     }
 
     @Test
@@ -82,7 +82,7 @@ public class DifferTest {
                 + "  - timeout: 50\n"
                 + "  + verbose: true\n"
                 + "}";
-        Assertions.assertEquals(expected, Differ.generate(filePath1,filePath2));
+        Assertions.assertEquals(expected, Differ.generate(filePath1, filePath2));
     }
 
     @Test
@@ -100,6 +100,6 @@ public class DifferTest {
                 + "  - timeout: 50\n"
                 + "  + timeout: 20\n"
                 + "}";
-        Assertions.assertEquals(expected, Differ.generate(filePath1,filePath2));
+        Assertions.assertEquals(expected, Differ.generate(filePath1, filePath2));
     }
 }
