@@ -12,12 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set Up Java17 and build project
-        uses: actions/checkout@v2, actions/setup-java@v2
+      - uses: actions/checkout@v2, actions/setup-java@v2
         with:
           distribution: 'temurin'
           java-version: '17'
           cache: 'gradle'
-        run: make project-build
+      - run: make project-build
 
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v2.5.7
