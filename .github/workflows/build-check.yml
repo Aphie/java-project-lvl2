@@ -20,14 +20,13 @@ jobs:
           cache: 'gradle'
       - run: make project-build
 
-      steps:
-        - name: Test & publish code coverage
-          uses: paambaati/codeclimate-action@v2.5.7
-          env:
-            # Set CC_TEST_REPORTER_ID as secret of your repo
-            CC_TEST_REPORTER_ID: 0934b5229b53b57aba63ef708704fe47bc2e55069b23745ae8700386ed6926b1
-            JACOCO_SOURCE_PATH: "${{github.workspace}}/src/main/java"
-          with:
-            # The report file must be there, otherwise Code Climate won't find it
-            coverageCommand: make run-test
-            coverageLocations: ${{github.workspace}}/build/jacocoHtml/index.html:jacoco
+      - name: Test & publish code coverage
+        uses: paambaati/codeclimate-action@v2.5.7
+        env:
+          # Set CC_TEST_REPORTER_ID as secret of your repo
+          CC_TEST_REPORTER_ID: 0934b5229b53b57aba63ef708704fe47bc2e55069b23745ae8700386ed6926b1
+          JACOCO_SOURCE_PATH: "${{github.workspace}}/src/main/java"
+        with:
+          # The report file must be there, otherwise Code Climate won't find it
+          coverageCommand: make run-test
+          coverageLocations: ${{github.workspace}}/build/jacocoHtml/index.html:jacoco
