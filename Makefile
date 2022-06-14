@@ -10,3 +10,6 @@ lint-main: #проверка на стандарт кодирования Main
 
 lint-test: #сборка проекта
 	gradle checkstyleTest
+
+run-test: #запуск тестов
+	gradle test
