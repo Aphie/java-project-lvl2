@@ -8,9 +8,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.MapType;
-
 public class Differ {
     public static String generate(Path filePath1, Path filePath2) throws Exception {
         Map<String, String> data1 = new HashMap<>();
@@ -20,12 +17,12 @@ public class Differ {
         Set<String> data2Keys = new HashSet<>();
 
         if (!(Files.readString(filePath1)).isEmpty() && !(Files.readString(filePath2)).isEmpty()) {
-            data1 = getData(Files.readString(filePath1));
-            data2 = getData(Files.readString(filePath2));
+            data1 = Parser.getData(filePath1.toString(), Files.readString(filePath1));
+            data2 = Parser.getData(filePath2.toString(), Files.readString(filePath2));
         } else if ((Files.readString(filePath1)).isEmpty() && !(Files.readString(filePath2)).isEmpty()) {
-            data2 = getData(Files.readString(filePath2));
+            data2 = Parser.getData(filePath2.toString(), Files.readString(filePath2));
         } else if ((Files.readString(filePath2)).isEmpty() && !(Files.readString(filePath1)).isEmpty()) {
-            data1 = getData(Files.readString(filePath1));
+            data1 = Parser.getData(filePath1.toString(), Files.readString(filePath1));
         } else {
             return falseResult;
         }
@@ -55,9 +52,4 @@ public class Differ {
         return resultString + "}";
     }
 
-    public static Map<String, String> getData(String content) throws Exception {
-        ObjectMapper objectMapper = new ObjectMapper();
-        MapType type = objectMapper.getTypeFactory().constructMapType(HashMap.class, String.class, String.class);
-        return objectMapper.readValue(content, type);
-    }
 }
