@@ -5,15 +5,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.MapType;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
-//import java.nio.file.Path;
-//import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Parser {
     public static Map<String, String> getData(String filepath, String content) throws Exception {
         String format = filepath.substring(filepath.lastIndexOf('/') + 1);
-        int dotIndex = format.indexOf('.');
+        int dotIndex = format.lastIndexOf('.');
         Map<String, String> parsedData = new HashMap<>();
         if ((format.substring(dotIndex  + 1)).equals("json")) {
             ObjectMapper objectMapper = new ObjectMapper();
@@ -22,6 +20,8 @@ public class Parser {
         } else if ((format.substring(dotIndex  + 1)).equals("yml")) {
             ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
             parsedData = mapper.readValue(content, new TypeReference<Map<String, String>>() { });
+        } else {
+            throw new Exception("ERROR: You entered filename without file format or tried to parse file with incorrect format");
         }
         return parsedData;
     }

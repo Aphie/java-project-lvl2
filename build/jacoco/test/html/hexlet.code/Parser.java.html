@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Parser.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">hexlet.code</a> &gt; <span class="el_source">Parser.java</span></div><h1>Parser.java</h1><pre class="source lang-java linenums">package hexlet.code;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.MapType;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+
+import java.util.HashMap;
+import java.util.Map;
+
+<span class="nc" id="L11">public class Parser {</span>
+    public static Map&lt;String, String&gt; getData(String filepath, String content) throws Exception {
+<span class="fc" id="L13">        String format = filepath.substring(filepath.lastIndexOf('/') + 1);</span>
+<span class="fc" id="L14">        int dotIndex = format.lastIndexOf('.');</span>
+<span class="fc" id="L15">        Map&lt;String, String&gt; parsedData = new HashMap&lt;&gt;();</span>
+<span class="fc bfc" id="L16" title="All 2 branches covered.">        if ((format.substring(dotIndex  + 1)).equals(&quot;json&quot;)) {</span>
+<span class="fc" id="L17">            ObjectMapper objectMapper = new ObjectMapper();</span>
+<span class="fc" id="L18">            MapType type = objectMapper.getTypeFactory().constructMapType(HashMap.class, String.class, String.class);</span>
+<span class="fc" id="L19">            parsedData = objectMapper.readValue(content, type);</span>
+<span class="fc bfc" id="L20" title="All 2 branches covered.">        } else if ((format.substring(dotIndex  + 1)).equals(&quot;yml&quot;)) {</span>
+<span class="fc" id="L21">            ObjectMapper mapper = new ObjectMapper(new YAMLFactory());</span>
+<span class="fc" id="L22">            parsedData = mapper.readValue(content, new TypeReference&lt;Map&lt;String, String&gt;&gt;() { });</span>
+<span class="fc" id="L23">        } else {</span>
+<span class="fc" id="L24">            throw new Exception(&quot;ERROR: You entered filename without file format or tried to parse file with incorrect format&quot;);</span>
+        }
+<span class="fc" id="L26">        return parsedData;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

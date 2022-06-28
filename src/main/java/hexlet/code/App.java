@@ -27,6 +27,7 @@ public class App implements Callable<String> {
 
     @Override
     public final String call() throws Exception {
+
         if (!filepath1.isAbsolute()) {
             filepath1 = filepath1.toAbsolutePath();
         }
