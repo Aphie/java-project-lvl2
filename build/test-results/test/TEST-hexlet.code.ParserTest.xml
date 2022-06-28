@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="hexlet.code.ParserTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2022-06-28T10:02:49" hostname="CSPBNTB3026" time="0.888">
+  <properties/>
+  <testcase name="parserTestBaseJson()" classname="hexlet.code.ParserTest" time="0.757"/>
+  <testcase name="parserTestIncorrectFormat()" classname="hexlet.code.ParserTest" time="0.005"/>
+  <testcase name="parserTestNoFormat()" classname="hexlet.code.ParserTest" time="0.002"/>
+  <testcase name="parserTestBaseYml()" classname="hexlet.code.ParserTest" time="0.115"/>
+  <testcase name="parserTestSeveralDotsInName()" classname="hexlet.code.ParserTest" time="0.002"/>
+  <testcase name="parserTestSeveralDotsInPath()" classname="hexlet.code.ParserTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
