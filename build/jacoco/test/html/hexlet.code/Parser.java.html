@@ -13,17 +13,18 @@ import java.util.Map;
 <span class="fc" id="L13">        String format = filepath.substring(filepath.lastIndexOf('/') + 1);</span>
 <span class="fc" id="L14">        int dotIndex = format.lastIndexOf('.');</span>
 <span class="fc" id="L15">        Map&lt;String, String&gt; parsedData = new HashMap&lt;&gt;();</span>
-<span class="fc bfc" id="L16" title="All 2 branches covered.">        if ((format.substring(dotIndex  + 1)).equals(&quot;json&quot;)) {</span>
+<span class="pc bpc" id="L16" title="1 of 2 branches missed.">        if ((format.substring(dotIndex  + 1)).equals(&quot;json&quot;)) {</span>
 <span class="fc" id="L17">            ObjectMapper objectMapper = new ObjectMapper();</span>
 <span class="fc" id="L18">            MapType type = objectMapper.getTypeFactory().constructMapType(HashMap.class, String.class, String.class);</span>
 <span class="fc" id="L19">            parsedData = objectMapper.readValue(content, type);</span>
-<span class="fc bfc" id="L20" title="All 2 branches covered.">        } else if ((format.substring(dotIndex  + 1)).equals(&quot;yml&quot;)) {</span>
-<span class="fc" id="L21">            ObjectMapper mapper = new ObjectMapper(new YAMLFactory());</span>
-<span class="fc" id="L22">            parsedData = mapper.readValue(content, new TypeReference&lt;Map&lt;String, String&gt;&gt;() { });</span>
-<span class="fc" id="L23">        } else {</span>
-<span class="fc" id="L24">            throw new Exception(&quot;ERROR: You entered filename without file format or tried to parse file with incorrect format&quot;);</span>
+<span class="pc bnc" id="L20" title="All 2 branches missed.">        } else if ((format.substring(dotIndex  + 1)).equals(&quot;yml&quot;)) {</span>
+<span class="nc" id="L21">            ObjectMapper mapper = new ObjectMapper(new YAMLFactory());</span>
+<span class="nc" id="L22">            parsedData = mapper.readValue(content, new TypeReference&lt;Map&lt;String, String&gt;&gt;() { });</span>
+<span class="nc" id="L23">        } else {</span>
+<span class="nc" id="L24">            throw new Exception(&quot;ERROR: You entered filename without file format or tried to parse file with &quot;</span>
+                    + &quot;incorrect format&quot;);
         }
-<span class="fc" id="L26">        return parsedData;</span>
+<span class="fc" id="L27">        return parsedData;</span>
     }
 
 }
