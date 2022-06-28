@@ -11,8 +11,10 @@ public class AppTest {
 
     @Test
     void appTestAbsolutePathBothFiles() throws Exception {
-        Path filePath1 = Paths.get("C:\\Users\\s.andreyuk\\IdeaProjects\\app\\src\\test\\resources\\appTest\\appTestAbsolutePathBothFiles_file1.json");
-        Path filePath2 = Paths.get("C:\\Users\\s.andreyuk\\IdeaProjects\\app\\src\\test\\resources\\appTest\\appTestAbsolutePathBothFiles_file2.json");
+        Path filePath1 = Paths.get("C:\\Users\\s.andreyuk\\IdeaProjects\\app\\src\\test\\resources"
+                + "\\appTest\\appTestAbsolutePathBothFiles_file1.json");
+        Path filePath2 = Paths.get("C:\\Users\\s.andreyuk\\IdeaProjects\\app\\src\\test\\resources"
+                + "\\appTest\\appTestAbsolutePathBothFiles_file2.json");
 
         String[] args = {filePath1.toString(), filePath2.toString()};
         int expected = 0;
