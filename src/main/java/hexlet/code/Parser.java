@@ -21,8 +21,8 @@ public class Parser {
             ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
             parsedData = mapper.readValue(content, new TypeReference<Map<String, String>>() { });
         } else {
-            throw new Exception("ERROR: You entered filename without file format or tried to parse file with " +
-                    "incorrect format");
+            throw new Exception("ERROR: You entered filename without file format or tried to parse file with "
+                    + "incorrect format");
         }
         return parsedData;
     }
