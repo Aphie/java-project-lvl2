@@ -4,7 +4,6 @@ import picocli.CommandLine;
 import picocli.CommandLine.Option;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.util.concurrent.Callable;
 
@@ -29,10 +28,6 @@ public class App implements Callable<String> {
     @Override
     public final String call() throws Exception {
 
-        if (filepath1.toString().isEmpty() || filepath1.toString().equals(null)) {
-            throw new Exception ("ERROR: You didn't enter filepath to file");
-        }
-
         if (!filepath1.isAbsolute()) {
             filepath1 = filepath1.toAbsolutePath();
         }
@@ -47,8 +42,7 @@ public class App implements Callable<String> {
     }
 
     public static void main(String[] args) throws IOException {
-        int exitCode = new CommandLine(new App())
-                .execute(args);
+        int exitCode = new CommandLine(new App()).execute(args);
         System.exit(exitCode);
     }
 
