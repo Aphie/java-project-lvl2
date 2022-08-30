@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="hexlet.code.AppTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-06-28T14:20:37" hostname="CSPBNTB3026" time="0.964">
+<testsuite name="hexlet.code.AppTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-08-30T10:19:41" hostname="CSPBNTB3026" time="1.435">
   <properties/>
-  <testcase name="appTestRelativePathBothFiles()" classname="hexlet.code.AppTest" time="0.952"/>
-  <testcase name="appTestAbsolutePathBothFiles()" classname="hexlet.code.AppTest" time="0.011"/>
+  <testcase name="appTestRelativePathBothFiles()" classname="hexlet.code.AppTest" time="1.42"/>
+  <testcase name="appTestAbsolutePathBothFiles()" classname="hexlet.code.AppTest" time="0.014"/>
   <system-out><![CDATA[{
     follow: false
     host: hexlet.io

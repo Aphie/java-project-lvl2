@@ -2,54 +2,70 @@
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.TreeSet;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
 
-<span class="nc" id="L11">public class Differ {</span>
-    public static String generate(Path filePath1, Path filePath2) throws Exception {
-<span class="fc" id="L13">        Map&lt;String, String&gt; data1 = new HashMap&lt;&gt;();</span>
-<span class="fc" id="L14">        Map&lt;String, String&gt; data2 = new HashMap&lt;&gt;();</span>
-<span class="fc" id="L15">        String falseResult = new String();</span>
-<span class="fc" id="L16">        Set&lt;String&gt; data1Keys = new HashSet&lt;&gt;();</span>
-<span class="fc" id="L17">        Set&lt;String&gt; data2Keys = new HashSet&lt;&gt;();</span>
+<span class="nc" id="L12">public class Differ {</span>
+    public static String generate(Path filePath1, Path filePath2, String format) throws Exception {
+<span class="fc" id="L14">        Map&lt;String, Object&gt; data1 = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L15">        Map&lt;String, Object&gt; data2 = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L16">        LinkedHashMap&lt;String, Object&gt; diffMap = new LinkedHashMap&lt;&gt;();</span>
+<span class="fc" id="L17">        String falseResult = new String();</span>
+<span class="fc" id="L18">        Set&lt;String&gt; data1Keys = new HashSet&lt;&gt;();</span>
+<span class="fc" id="L19">        Set&lt;String&gt; data2Keys = new HashSet&lt;&gt;();</span>
 
-<span class="pc bpc" id="L19" title="2 of 4 branches missed.">        if (!(Files.readString(filePath1)).isEmpty() &amp;&amp; !(Files.readString(filePath2)).isEmpty()) {</span>
-<span class="fc" id="L20">            data1 = Parser.getData(filePath1.toString(), Files.readString(filePath1));</span>
-<span class="fc" id="L21">            data2 = Parser.getData(filePath2.toString(), Files.readString(filePath2));</span>
-<span class="nc bnc" id="L22" title="All 4 branches missed.">        } else if ((Files.readString(filePath1)).isEmpty() &amp;&amp; !(Files.readString(filePath2)).isEmpty()) {</span>
-<span class="nc" id="L23">            data2 = Parser.getData(filePath2.toString(), Files.readString(filePath2));</span>
-<span class="nc bnc" id="L24" title="All 4 branches missed.">        } else if ((Files.readString(filePath2)).isEmpty() &amp;&amp; !(Files.readString(filePath1)).isEmpty()) {</span>
-<span class="nc" id="L25">            data1 = Parser.getData(filePath1.toString(), Files.readString(filePath1));</span>
+<span class="pc bpc" id="L21" title="2 of 4 branches missed.">        if (!(Files.readString(filePath1)).isEmpty() &amp;&amp; !(Files.readString(filePath2)).isEmpty()) {</span>
+<span class="fc" id="L22">            data1 = Parser.getData(filePath1.toString(), Files.readString(filePath1));</span>
+<span class="fc" id="L23">            data2 = Parser.getData(filePath2.toString(), Files.readString(filePath2));</span>
+<span class="nc bnc" id="L24" title="All 4 branches missed.">        } else if ((Files.readString(filePath1)).isEmpty() &amp;&amp; !(Files.readString(filePath2)).isEmpty()) {</span>
+<span class="nc" id="L25">            data2 = Parser.getData(filePath2.toString(), Files.readString(filePath2));</span>
+<span class="nc bnc" id="L26" title="All 4 branches missed.">        } else if ((Files.readString(filePath2)).isEmpty() &amp;&amp; !(Files.readString(filePath1)).isEmpty()) {</span>
+<span class="nc" id="L27">            data1 = Parser.getData(filePath1.toString(), Files.readString(filePath1));</span>
         } else {
-<span class="nc" id="L27">            return falseResult;</span>
+<span class="nc" id="L29">            return falseResult;</span>
         }
 
-<span class="fc" id="L30">        TreeSet&lt;String&gt; resultKeys = new TreeSet&lt;&gt;();</span>
+<span class="fc" id="L32">        TreeSet&lt;String&gt; resultKeys = new TreeSet&lt;&gt;();</span>
 
-<span class="fc" id="L32">        data1Keys = data1.keySet();</span>
-<span class="fc" id="L33">        data2Keys = data2.keySet();</span>
-<span class="fc" id="L34">        resultKeys.addAll(data1Keys);</span>
-<span class="fc" id="L35">        resultKeys.addAll(data2Keys);</span>
-
-<span class="fc" id="L37">        String resultString = &quot;{\n&quot;;</span>
+<span class="fc" id="L34">        data1Keys = data1.keySet();</span>
+<span class="fc" id="L35">        data2Keys = data2.keySet();</span>
+<span class="fc" id="L36">        resultKeys.addAll(data1Keys);</span>
+<span class="fc" id="L37">        resultKeys.addAll(data2Keys);</span>
 
 <span class="fc bfc" id="L39" title="All 2 branches covered.">        for (String k: resultKeys) {</span>
-<span class="fc bfc" id="L40" title="All 2 branches covered.">            if (!data1.containsKey(k)) {</span>
-<span class="fc" id="L41">                resultString += &quot;  + &quot; + k + &quot;: &quot; + data2.get(k) + &quot;\n&quot;;</span>
-<span class="fc bfc" id="L42" title="All 2 branches covered.">            } else if (!data2.containsKey(k)) {</span>
-<span class="fc" id="L43">                resultString += &quot;  - &quot; + k + &quot;: &quot; + data1.get(k) + &quot;\n&quot;;</span>
-<span class="fc bfc" id="L44" title="All 2 branches covered.">            } else if (data1.get(k).equals(data2.get(k))) {</span>
-<span class="fc" id="L45">                resultString += &quot;    &quot; + k + &quot;: &quot; + data1.get(k) + &quot;\n&quot;;</span>
-            } else {
-<span class="fc" id="L47">                resultString += &quot;  - &quot; + k + &quot;: &quot; + data1.get(k) + &quot;\n&quot;;</span>
-<span class="fc" id="L48">                resultString += &quot;  + &quot; + k + &quot;: &quot; + data2.get(k) + &quot;\n&quot;;</span>
-            }
-<span class="fc" id="L50">        }</span>
 
-<span class="fc" id="L52">        return resultString + &quot;}&quot;;</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">            if (!data1.containsKey(k)) {</span>
+<span class="pc bpc" id="L42" title="1 of 2 branches missed.">                if (null == data2.get(k)) {</span>
+<span class="nc" id="L43">                    data2.put(k, &quot;null&quot;);</span>
+                }
+<span class="fc" id="L45">                diffMap.put(&quot;+ &quot; + k, data2.get(k));</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">            } else if (!data2.containsKey(k)) {</span>
+<span class="pc bpc" id="L47" title="1 of 2 branches missed.">                if (null == data1.get(k)) {</span>
+<span class="nc" id="L48">                    data1.put(k, &quot;null&quot;);</span>
+                }
+<span class="fc" id="L50">                diffMap.put(&quot;- &quot; + k, data1.get(k));</span>
+            } else {
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">                if (null == data2.get(k)) {</span>
+<span class="nc" id="L53">                    data2.put(k, &quot;null&quot;);</span>
+                }
+<span class="pc bpc" id="L55" title="1 of 2 branches missed.">                if (null == data1.get(k)) {</span>
+<span class="nc" id="L56">                    data1.put(k, &quot;null&quot;);</span>
+                }
+<span class="fc bfc" id="L58" title="All 2 branches covered.">                if (data1.get(k).equals(data2.get(k))) {</span>
+<span class="fc" id="L59">                    diffMap.put(&quot; &quot; + k, data1.get(k));</span>
+                } else {
+<span class="fc" id="L61">                    diffMap.put(&quot;- &quot; + k, data1.get(k));</span>
+<span class="fc" id="L62">                    diffMap.put(&quot;+ &quot; + k, data2.get(k));</span>
+                }
+
+            }
+<span class="fc" id="L66">        }</span>
+<span class="fc" id="L67">        String resultString = Formatter.toFormate(diffMap, format);</span>
+<span class="fc" id="L68">        return resultString;</span>
     }
 
 }

@@ -36,7 +36,7 @@ public class App implements Callable<String> {
             filepath2 = filepath2.toAbsolutePath();
         }
 
-        var diff = Differ.generate(filepath1, filepath2);
+        var diff = Differ.generate(filepath1, filepath2, format);
         System.out.println(diff);
         return null;
     }

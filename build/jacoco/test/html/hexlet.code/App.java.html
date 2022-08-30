@@ -4,12 +4,11 @@ import picocli.CommandLine;
 import picocli.CommandLine.Option;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.util.concurrent.Callable;
 
 @CommandLine.Command(name = &quot;App&quot;, header = &quot;Compares two configuration files and shows a difference.&quot;, version = &quot;1.0&quot;)
-<span class="fc" id="L12">public class App implements Callable&lt;String&gt; {</span>
+<span class="fc" id="L11">public class App implements Callable&lt;String&gt; {</span>
 
     @CommandLine.Parameters(paramLabel = &quot;filepath1&quot;, description = &quot;path to first file&quot;)
     private static Path filepath1;
@@ -21,7 +20,7 @@ import java.util.concurrent.Callable;
     private static String format;
 
     @Option(names = { &quot;-h&quot;, &quot;--help&quot; }, usageHelp = true, description = &quot;Show this help message and exit.&quot;)
-<span class="fc" id="L24">    private static boolean usageHelpRequested = false;</span>
+<span class="fc" id="L23">    private static boolean usageHelpRequested = false;</span>
 
     @Option(names = { &quot;-v&quot;, &quot;--version&quot; }, versionHelp = true, description = &quot;Print version information and exit.&quot;)
     private static boolean versionRequested;
@@ -29,28 +28,23 @@ import java.util.concurrent.Callable;
     @Override
     public final String call() throws Exception {
 
-<span class="pc bpc" id="L32" title="2 of 4 branches missed.">        if (filepath1.toString().isEmpty() || filepath1.toString().equals(null)) {</span>
-<span class="nc" id="L33">            throw new Exception (&quot;ERROR: You didn't enter filepath to file&quot;);</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        if (!filepath1.isAbsolute()) {</span>
+<span class="fc" id="L32">            filepath1 = filepath1.toAbsolutePath();</span>
         }
 
-<span class="fc bfc" id="L36" title="All 2 branches covered.">        if (!filepath1.isAbsolute()) {</span>
-<span class="fc" id="L37">            filepath1 = filepath1.toAbsolutePath();</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        if (!filepath2.isAbsolute()) {</span>
+<span class="fc" id="L36">            filepath2 = filepath2.toAbsolutePath();</span>
         }
 
-<span class="fc bfc" id="L40" title="All 2 branches covered.">        if (!filepath2.isAbsolute()) {</span>
-<span class="fc" id="L41">            filepath2 = filepath2.toAbsolutePath();</span>
-        }
-
-<span class="fc" id="L44">        var diff = Differ.generate(filepath1, filepath2);</span>
-<span class="fc" id="L45">        System.out.println(diff);</span>
-<span class="fc" id="L46">        return null;</span>
+<span class="fc" id="L39">        var diff = Differ.generate(filepath1, filepath2, format);</span>
+<span class="fc" id="L40">        System.out.println(diff);</span>
+<span class="fc" id="L41">        return null;</span>
     }
 
     public static void main(String[] args) throws IOException {
-<span class="nc" id="L50">        int exitCode = new CommandLine(new App())</span>
-<span class="nc" id="L51">                .execute(args);</span>
-<span class="nc" id="L52">        System.exit(exitCode);</span>
-<span class="nc" id="L53">    }</span>
+<span class="nc" id="L45">        int exitCode = new CommandLine(new App()).execute(args);</span>
+<span class="nc" id="L46">        System.exit(exitCode);</span>
+<span class="nc" id="L47">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

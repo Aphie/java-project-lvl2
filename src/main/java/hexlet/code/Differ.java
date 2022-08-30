@@ -2,16 +2,18 @@ package hexlet.code;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.TreeSet;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
 
 public class Differ {
-    public static String generate(Path filePath1, Path filePath2) throws Exception {
-        Map<String, String> data1 = new HashMap<>();
-        Map<String, String> data2 = new HashMap<>();
+    public static String generate(Path filePath1, Path filePath2, String format) throws Exception {
+        Map<String, Object> data1 = new HashMap<>();
+        Map<String, Object> data2 = new HashMap<>();
+        LinkedHashMap<String, Object> diffMap = new LinkedHashMap<>();
         String falseResult = new String();
         Set<String> data1Keys = new HashSet<>();
         Set<String> data2Keys = new HashSet<>();
@@ -34,22 +36,36 @@ public class Differ {
         resultKeys.addAll(data1Keys);
         resultKeys.addAll(data2Keys);
 
-        String resultString = "{\n";
-
         for (String k: resultKeys) {
+
             if (!data1.containsKey(k)) {
-                resultString += "  + " + k + ": " + data2.get(k) + "\n";
+                if (null == data2.get(k)) {
+                    data2.put(k, "null");
+                }
+                diffMap.put("+ " + k, data2.get(k));
             } else if (!data2.containsKey(k)) {
-                resultString += "  - " + k + ": " + data1.get(k) + "\n";
-            } else if (data1.get(k).equals(data2.get(k))) {
-                resultString += "    " + k + ": " + data1.get(k) + "\n";
+                if (null == data1.get(k)) {
+                    data1.put(k, "null");
+                }
+                diffMap.put("- " + k, data1.get(k));
             } else {
-                resultString += "  - " + k + ": " + data1.get(k) + "\n";
-                resultString += "  + " + k + ": " + data2.get(k) + "\n";
+                if (null == data2.get(k)) {
+                    data2.put(k, "null");
+                }
+                if (null == data1.get(k)) {
+                    data1.put(k, "null");
+                }
+                if (data1.get(k).equals(data2.get(k))) {
+                    diffMap.put(" " + k, data1.get(k));
+                } else {
+                    diffMap.put("- " + k, data1.get(k));
+                    diffMap.put("+ " + k, data2.get(k));
+                }
+
             }
         }
-
-        return resultString + "}";
+        String resultString = Formatter.toFormate(diffMap, format);
+        return resultString;
     }
 
 }
