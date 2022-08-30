@@ -11,15 +11,15 @@ import java.util.Set;
     public static final int VALUE_FOR_DELETION_REPLACEMENT = 8;
 
     public static String convertToPlainFormat(Map&lt;String, Object&gt; diffMap) {
-<span class="fc" id="L14">        Set&lt;String&gt; resultKeys = diffMap.keySet();</span>
+<span class="nc" id="L14">        Set&lt;String&gt; resultKeys = diffMap.keySet();</span>
 
-<span class="fc" id="L16">        String resultString = &quot;\n&quot;;</span>
+<span class="nc" id="L16">        String resultString = &quot;\n&quot;;</span>
 
-<span class="fc bfc" id="L18" title="All 2 branches covered.">        for (String key: resultKeys) {</span>
-<span class="fc" id="L19">            String resultValue = &quot;&quot;;</span>
-<span class="pc bpc" id="L20" title="1 of 2 branches missed.">            if ((diffMap.get(key)).getClass() == String.class) {</span>
-<span class="pc bpc" id="L21" title="1 of 2 branches missed.">                if (diffMap.get(key).toString().equals(&quot;null&quot;)) {</span>
-<span class="fc" id="L22">                    resultValue = diffMap.get(key).toString();</span>
+<span class="nc bnc" id="L18" title="All 2 branches missed.">        for (String key: resultKeys) {</span>
+<span class="nc" id="L19">            String resultValue = &quot;&quot;;</span>
+<span class="nc bnc" id="L20" title="All 2 branches missed.">            if ((diffMap.get(key)).getClass() == String.class) {</span>
+<span class="nc bnc" id="L21" title="All 2 branches missed.">                if (diffMap.get(key).toString().equals(&quot;null&quot;)) {</span>
+<span class="nc" id="L22">                    resultValue = diffMap.get(key).toString();</span>
                 } else {
 <span class="nc" id="L24">                    resultValue = &quot;'&quot; + diffMap.get(key).toString() + &quot;'&quot;;</span>
                 }
@@ -30,8 +30,8 @@ import java.util.Set;
 <span class="nc" id="L30">                resultValue = diffMap.get(key).toString();</span>
             }
 
-<span class="pc bpc" id="L33" title="1 of 2 branches missed.">            if (key.startsWith(&quot;added&quot;)) {</span>
-<span class="fc" id="L34">                resultString += &quot;Property '&quot; + key.substring(VALUE_FOR_ADDING_REPLACEMENT)</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">            if (key.startsWith(&quot;added&quot;)) {</span>
+<span class="nc" id="L34">                resultString += &quot;Property '&quot; + key.substring(VALUE_FOR_ADDING_REPLACEMENT)</span>
                         + &quot;' was added with value: &quot; + resultValue + &quot;\n&quot;;
 <span class="nc bnc" id="L36" title="All 2 branches missed.">            } else if (key.startsWith(&quot;deleted&quot;)) {</span>
 <span class="nc" id="L37">                resultString += &quot;Property '&quot; + key.substring(VALUE_FOR_DELETION_REPLACEMENT) + &quot;' was removed\n&quot;;</span>
@@ -41,8 +41,8 @@ import java.util.Set;
 <span class="nc bnc" id="L41" title="All 2 branches missed.">            } else if (key.startsWith(&quot;chan+&quot;)) {</span>
 <span class="nc" id="L42">                resultString += resultValue + &quot;\n&quot;;</span>
             }
-<span class="fc" id="L44">        }</span>
-<span class="fc" id="L45">        return resultString;</span>
+<span class="nc" id="L44">        }</span>
+<span class="nc" id="L45">        return resultString;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

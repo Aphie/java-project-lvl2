@@ -7,12 +7,14 @@ import java.util.LinkedHashMap;
 
 public class FormatterTest {
 
+    public static final int TEST_INT_VALUE = 45;
+
     @Test
     void formatterTestBaseStylish() throws Exception {
         LinkedHashMap<String, Object> data = new LinkedHashMap<>();
         data.put("added setting1", "Some value");
         data.put("unchanged default", "null");
-        data.put("deleted id", 45);
+        data.put("deleted id", TEST_INT_VALUE);
         data.put("change- setting3", true);
         data.put("chan+ setting3", "none");
         String format = "stylish";
@@ -31,7 +33,7 @@ public class FormatterTest {
         LinkedHashMap<String, Object> data = new LinkedHashMap<>();
         data.put("added setting1", "Some value");
         data.put("unchanged default", "null");
-        data.put("deleted id", 45);
+        data.put("deleted id", TEST_INT_VALUE);
         data.put("change- setting3", true);
         data.put("chan+ setting3", "none");
         String format = "plain";
@@ -46,7 +48,7 @@ public class FormatterTest {
         LinkedHashMap<String, Object> data = new LinkedHashMap<>();
         data.put("+ setting1", "Some value");
         data.put(" default", "null");
-        data.put("- id", "45");
+        data.put("- id", TEST_INT_VALUE);
         String format = "style";
         String expectedResult = "No output for such format as " + format
                 + ". Please specify existing format for information output";

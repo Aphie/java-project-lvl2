@@ -11,6 +11,8 @@ import java.util.Map;
 
 public class ParserTest {
 
+    public static final int TEST_INT_VALUE = 45;
+
     @Test
     void parserTestBaseJson() throws Exception {
         Path filePath = Paths.get("src/test/resources/parserTest/parserTestBaseJson.json");
@@ -22,7 +24,7 @@ public class ParserTest {
         expectedMap.put("numbers1", "[1, 2, 3, 4]");
         expectedMap.put("obj1", "{nestedKey=value, isNested=true}");
         expectedMap.put("follow", false);
-        expectedMap.put("timeout", 50);
+        expectedMap.put("timeout", TEST_INT_VALUE);
 
         boolean expected = true;
 
@@ -48,7 +50,7 @@ public class ParserTest {
         expectedMap.put("numbers1", "[1, 2, 3, 4]");
         expectedMap.put("obj1", "{nestedKey=value, isNested=true}");
         expectedMap.put("follow", false);
-        expectedMap.put("timeout", 50);
+        expectedMap.put("timeout", TEST_INT_VALUE);
         boolean expected = true;
 
         Map<String, Object> actualMap = Parser.getData(filePath.toString(), Files.readString(filePath));

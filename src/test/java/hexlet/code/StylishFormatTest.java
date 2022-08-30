@@ -9,6 +9,9 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 
 public class StylishFormatTest {
+
+    public static final int TEST_INT_VALUE = 45;
+
     @Test
     void stylishFormatTestUnchangedString() throws Exception {
         LinkedHashMap<String, Object> data = new LinkedHashMap<>();
@@ -78,10 +81,10 @@ public class StylishFormatTest {
     @Test
     void stylishFormatTestOutputOfIntValue() throws Exception {
         LinkedHashMap<String, Object> data = new LinkedHashMap<>();
-        data.put("unchanged setting1", 5);
+        data.put("unchanged setting1", TEST_INT_VALUE);
 
         String expectedResult = "{\n"
-                + "    setting1: 5\n"
+                + "    setting1: " + TEST_INT_VALUE + "\n"
                 + "}";
         Assertions.assertEquals(expectedResult, StylishFormat.convertToStylishFormat(data));
     }

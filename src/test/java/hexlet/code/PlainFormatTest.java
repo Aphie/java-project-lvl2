@@ -1,7 +1,6 @@
 package hexlet.code;
 
 import hexlet.code.formatters.PlainFormat;
-import hexlet.code.formatters.StylishFormat;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +9,8 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 
 public class PlainFormatTest {
+    public static final int TEST_INT_VALUE = 45;
+
     @Test
     void plainFormatTestUnchangedString() throws Exception {
         LinkedHashMap<String, Object> data = new LinkedHashMap<>();
@@ -54,7 +55,7 @@ public class PlainFormatTest {
         data.put("change- setting1", "Some value");
 
         String expectedResult = "\n"
-                + "Property 'setting1' was updated. From 'Some value' to ";;
+                + "Property 'setting1' was updated. From 'Some value' to ";
         Assertions.assertEquals(expectedResult, PlainFormat.convertToPlainFormat(data));
     }
 
@@ -71,10 +72,10 @@ public class PlainFormatTest {
     @Test
     void plainFormatTestOutputOfIntValue() throws Exception {
         LinkedHashMap<String, Object> data = new LinkedHashMap<>();
-        data.put("added setting1", 5);
+        data.put("added setting1", TEST_INT_VALUE);
 
         String expectedResult = "\n"
-                + "Property 'setting1' was added with value: 5\n";
+                + "Property 'setting1' was added with value: " + TEST_INT_VALUE + "\n";
         Assertions.assertEquals(expectedResult, PlainFormat.convertToPlainFormat(data));
     }
 
@@ -91,7 +92,7 @@ public class PlainFormatTest {
     @Test
     void plainFormatTestOutputOfArrayListIntValue() throws Exception {
         LinkedHashMap<String, Object> data = new LinkedHashMap<>();
-        ArrayList<Integer> nestedValue = new ArrayList<Integer>(Arrays.asList(1, 2, 3));
+        ArrayList<Integer> nestedValue = new ArrayList<Integer>(Arrays.asList(TEST_INT_VALUE, TEST_INT_VALUE, TEST_INT_VALUE));
         data.put("added setting1", nestedValue);
 
         String expectedResult = "\n"
