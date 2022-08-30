@@ -92,8 +92,8 @@ public class DifferTest {
         Path filePath1 = Paths.get("src/test/resources/differTest/differTestbothFileSame_file1.json");
         Path filePath2 = Paths.get("src/test/resources/differTest/differTestbothFileSame_file2.json");
 
-        String expected = "{\n" +
-                "    chars1: [a, b, c]\n"
+        String expected = "{\n"
+                + "    chars1: [a, b, c]\n"
                 + "    chars2: [d, e, f]\n"
                 + "    checked: false\n"
                 + "    default: null\n"
