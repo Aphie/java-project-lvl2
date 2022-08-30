@@ -21,8 +21,8 @@ public class ParserTest {
         expectedMap.put("host", "hexlet.io");
         expectedMap.put("numbers1", "[1, 2, 3, 4]");
         expectedMap.put("obj1", "{nestedKey=value, isNested=true}");
-        expectedMap.put("follow", "false");
-        expectedMap.put("timeout", "50");
+        expectedMap.put("follow", false);
+        expectedMap.put("timeout", 50);
 
         boolean expected = true;
 
@@ -47,8 +47,8 @@ public class ParserTest {
         expectedMap.put("host", "hexlet.io");
         expectedMap.put("numbers1", "[1, 2, 3, 4]");
         expectedMap.put("obj1", "{nestedKey=value, isNested=true}");
-        expectedMap.put("follow", "false");
-        expectedMap.put("timeout", "50");
+        expectedMap.put("follow", false);
+        expectedMap.put("timeout", 50);
         boolean expected = true;
 
         Map<String, Object> actualMap = Parser.getData(filePath.toString(), Files.readString(filePath));

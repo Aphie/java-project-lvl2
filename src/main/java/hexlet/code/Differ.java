@@ -42,12 +42,12 @@ public class Differ {
                 if (null == data2.get(k)) {
                     data2.put(k, "null");
                 }
-                diffMap.put("+ " + k, data2.get(k));
+                diffMap.put("added " + k, data2.get(k));
             } else if (!data2.containsKey(k)) {
                 if (null == data1.get(k)) {
                     data1.put(k, "null");
                 }
-                diffMap.put("- " + k, data1.get(k));
+                diffMap.put("deleted " + k, data1.get(k));
             } else {
                 if (null == data2.get(k)) {
                     data2.put(k, "null");
@@ -56,15 +56,15 @@ public class Differ {
                     data1.put(k, "null");
                 }
                 if (data1.get(k).equals(data2.get(k))) {
-                    diffMap.put(" " + k, data1.get(k));
+                    diffMap.put("unchanged " + k, data1.get(k));
                 } else {
-                    diffMap.put("- " + k, data1.get(k));
-                    diffMap.put("+ " + k, data2.get(k));
+                    diffMap.put("change- " + k, data1.get(k));
+                    diffMap.put("chan+ " + k, data2.get(k));
                 }
 
             }
         }
-        String resultString = Formatter.toFormate(diffMap, format);
+        String resultString = Formatter.toConvertWithFormat(diffMap, format);
         return resultString;
     }
 

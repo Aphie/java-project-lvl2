@@ -8,7 +8,7 @@ import java.nio.file.Path;
 import java.util.concurrent.Callable;
 
 @CommandLine.Command(name = &quot;App&quot;, header = &quot;Compares two configuration files and shows a difference.&quot;, version = &quot;1.0&quot;)
-<span class="fc" id="L11">public class App implements Callable&lt;String&gt; {</span>
+<span class="nc" id="L11">public class App implements Callable&lt;String&gt; {</span>
 
     @CommandLine.Parameters(paramLabel = &quot;filepath1&quot;, description = &quot;path to first file&quot;)
     private static Path filepath1;
@@ -20,7 +20,7 @@ import java.util.concurrent.Callable;
     private static String format;
 
     @Option(names = { &quot;-h&quot;, &quot;--help&quot; }, usageHelp = true, description = &quot;Show this help message and exit.&quot;)
-<span class="fc" id="L23">    private static boolean usageHelpRequested = false;</span>
+<span class="nc" id="L23">    private static boolean usageHelpRequested = false;</span>
 
     @Option(names = { &quot;-v&quot;, &quot;--version&quot; }, versionHelp = true, description = &quot;Print version information and exit.&quot;)
     private static boolean versionRequested;
@@ -28,17 +28,17 @@ import java.util.concurrent.Callable;
     @Override
     public final String call() throws Exception {
 
-<span class="fc bfc" id="L31" title="All 2 branches covered.">        if (!filepath1.isAbsolute()) {</span>
-<span class="fc" id="L32">            filepath1 = filepath1.toAbsolutePath();</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">        if (!filepath1.isAbsolute()) {</span>
+<span class="nc" id="L32">            filepath1 = filepath1.toAbsolutePath();</span>
         }
 
-<span class="fc bfc" id="L35" title="All 2 branches covered.">        if (!filepath2.isAbsolute()) {</span>
-<span class="fc" id="L36">            filepath2 = filepath2.toAbsolutePath();</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">        if (!filepath2.isAbsolute()) {</span>
+<span class="nc" id="L36">            filepath2 = filepath2.toAbsolutePath();</span>
         }
 
-<span class="fc" id="L39">        var diff = Differ.generate(filepath1, filepath2, format);</span>
-<span class="fc" id="L40">        System.out.println(diff);</span>
-<span class="fc" id="L41">        return null;</span>
+<span class="nc" id="L39">        var diff = Differ.generate(filepath1, filepath2, format);</span>
+<span class="nc" id="L40">        System.out.println(diff);</span>
+<span class="nc" id="L41">        return null;</span>
     }
 
     public static void main(String[] args) throws IOException {

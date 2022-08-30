@@ -1,24 +1,20 @@
 package hexlet.code;
 
+import hexlet.code.formatters.PlainFormat;
+import hexlet.code.formatters.StylishFormat;
+
 import java.util.Map;
-import java.util.Set;
 
 public class Formatter {
-    public static final int THREE_TIMES = 3;
-    public static final int TWO_TIMES = 2;
-    public static String toFormate(Map<String, Object> diffMap, String format) {
-        Set<String> resultKeys = diffMap.keySet();
+
+    public static String toConvertWithFormat(Map<String, Object> diffMap, String format) {
+        String resultString = "";
 
         if (format.equals("stylish")) {
-            String resultString = "{\n";
-            for (String key: resultKeys) {
-                if (key.startsWith(" ")) {
-                    resultString += " ".repeat(THREE_TIMES) + key + ": " + diffMap.get(key).toString() + "\n";
-                } else {
-                    resultString += " ".repeat(TWO_TIMES) + key + ": " + diffMap.get(key).toString() + "\n";
-                }
-            }
-            resultString += "}";
+            resultString += StylishFormat.convertToStylishFormat(diffMap);
+            return resultString;
+        } else if (format.equals("plain")) {
+            resultString += PlainFormat.convertToPlainFormat(diffMap);
             return resultString;
         } else {
             return "No output for such format as " + format + ". Please specify existing format for information output";
