@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="hexlet.code.StylishFormatTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2022-08-30T19:33:34" hostname="CSPBNTB3026" time="0.075">
+<testsuite name="hexlet.code.StylishFormatTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-08-30T19:37:07" hostname="CSPBNTB3026" time="0.049">
   <properties/>
-  <testcase name="stylishFormatTestDeletedString()" classname="hexlet.code.StylishFormatTest" time="0.057"/>
-  <testcase name="stylishFormatTestOutputOfArrayListIntValue()" classname="hexlet.code.StylishFormatTest" time="0.001"/>
-  <testcase name="stylishFormatTestAddedString()" classname="hexlet.code.StylishFormatTest" time="0.001"/>
-  <testcase name="stylishFormatTestOutputOfLinkedHashMapValue()" classname="hexlet.code.StylishFormatTest" time="0.001"/>
-  <testcase name="stylishFormatTestOutputOfBooleanValue()" classname="hexlet.code.StylishFormatTest" time="0.001"/>
-  <testcase name="stylishFormatTestOutputOfIntValue()" classname="hexlet.code.StylishFormatTest" time="0.001"/>
-  <testcase name="stylishFormatTestUnchangedString()" classname="hexlet.code.StylishFormatTest" time="0.001"/>
-  <testcase name="stylishFormatTestOutputOfArrayListCharacterValue()" classname="hexlet.code.StylishFormatTest" time="0.001"/>
-  <testcase name="stylishFormatTestOutputOfArrayListStringValue()" classname="hexlet.code.StylishFormatTest" time="0.0"/>
-  <testcase name="stylishFormatTestOutputOfStringValue()" classname="hexlet.code.StylishFormatTest" time="0.0"/>
-  <testcase name="stylishFormatTestChangedDeletedString()" classname="hexlet.code.StylishFormatTest" time="0.001"/>
-  <testcase name="stylishFormatTestChangedAddedString()" classname="hexlet.code.StylishFormatTest" time="0.001"/>
+  <testcase name="stylishFormatTestOutputOfArrayListIntValue()" classname="hexlet.code.StylishFormatTest" time="0.049"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

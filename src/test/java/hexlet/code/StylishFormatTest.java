@@ -103,11 +103,11 @@ public class StylishFormatTest {
     @Test
     void stylishFormatTestOutputOfArrayListIntValue() throws Exception {
         LinkedHashMap<String, Object> data = new LinkedHashMap<>();
-        ArrayList<Integer> nestedValue = new ArrayList<Integer>(Arrays.asList(1, 2, 3));
+        ArrayList<Integer> nestedValue = new ArrayList<Integer>(Arrays.asList(TEST_INT_VALUE, TEST_INT_VALUE, TEST_INT_VALUE));
         data.put("unchanged setting1", nestedValue);
 
         String expectedResult = "{\n"
-                + "    setting1: [1, 2, 3]\n"
+                + "    setting1: [" + TEST_INT_VALUE + ", " + TEST_INT_VALUE + ", " + TEST_INT_VALUE + "]\n"
                 + "}";
         Assertions.assertEquals(expectedResult, StylishFormat.convertToStylishFormat(data));
     }
