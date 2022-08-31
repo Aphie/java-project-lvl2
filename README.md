@@ -21,3 +21,7 @@
 Вывод в формате plain:
 ![Вывод в формате plain - json](https://github.com/Aphie/java-project-lvl2/blob/main/screenshots/plain%20json.png)
 ![Вывод в формате plain - yaml](https://github.com/Aphie/java-project-lvl2/blob/main/screenshots/plain%20yml.png)
+
+Вывод в формате json:
+![Вывод в формате json - json](https://github.com/Aphie/java-project-lvl2/blob/main/screenshots/jsonformat%20json.png)
+![Вывод в формате json - yaml](https://github.com/Aphie/java-project-lvl2/blob/main/screenshots/jsonformat%20yml.png)
