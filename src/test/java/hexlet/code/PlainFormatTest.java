@@ -16,7 +16,7 @@ public class PlainFormatTest {
         LinkedHashMap<String, Object> data = new LinkedHashMap<>();
         data.put("unchanged setting1", "Some value");
 
-        String expectedResult = "\n";
+        String expectedResult = "";
         Assertions.assertEquals(expectedResult, PlainFormat.convertToPlainFormat(data));
     }
 
@@ -25,8 +25,7 @@ public class PlainFormatTest {
         LinkedHashMap<String, Object> data = new LinkedHashMap<>();
         data.put("added setting1", "Some value");
 
-        String expectedResult = "\n"
-                + "Property 'setting1' was added with value: 'Some value'\n";
+        String expectedResult = "Property 'setting1' was added with value: 'Some value'";
         Assertions.assertEquals(expectedResult, PlainFormat.convertToPlainFormat(data));
     }
 
@@ -35,8 +34,7 @@ public class PlainFormatTest {
         LinkedHashMap<String, Object> data = new LinkedHashMap<>();
         data.put("deleted setting1", "Some value");
 
-        String expectedResult = "\n"
-                + "Property 'setting1' was removed\n";
+        String expectedResult = "Property 'setting1' was removed";
         Assertions.assertEquals(expectedResult, PlainFormat.convertToPlainFormat(data));
     }
 
@@ -45,7 +43,7 @@ public class PlainFormatTest {
         LinkedHashMap<String, Object> data = new LinkedHashMap<>();
         data.put("chan+ setting1", "Some value");
 
-        String expectedResult = "\n'Some value'\n";
+        String expectedResult = "'Some value'";
         Assertions.assertEquals(expectedResult, PlainFormat.convertToPlainFormat(data));
     }
 
@@ -54,8 +52,7 @@ public class PlainFormatTest {
         LinkedHashMap<String, Object> data = new LinkedHashMap<>();
         data.put("change- setting1", "Some value");
 
-        String expectedResult = "\n"
-                + "Property 'setting1' was updated. From 'Some value' to ";
+        String expectedResult = "Property 'setting1' was updated. From 'Some value' to ";
         Assertions.assertEquals(expectedResult, PlainFormat.convertToPlainFormat(data));
     }
 
@@ -64,8 +61,7 @@ public class PlainFormatTest {
         LinkedHashMap<String, Object> data = new LinkedHashMap<>();
         data.put("added setting1", "Some value");
 
-        String expectedResult = "\n"
-                + "Property 'setting1' was added with value: 'Some value'\n";
+        String expectedResult = "Property 'setting1' was added with value: 'Some value'";
         Assertions.assertEquals(expectedResult, PlainFormat.convertToPlainFormat(data));
     }
 
@@ -74,8 +70,7 @@ public class PlainFormatTest {
         LinkedHashMap<String, Object> data = new LinkedHashMap<>();
         data.put("added setting1", TEST_INT_VALUE);
 
-        String expectedResult = "\n"
-                + "Property 'setting1' was added with value: " + TEST_INT_VALUE + "\n";
+        String expectedResult = "Property 'setting1' was added with value: " + TEST_INT_VALUE;
         Assertions.assertEquals(expectedResult, PlainFormat.convertToPlainFormat(data));
     }
 
@@ -84,8 +79,7 @@ public class PlainFormatTest {
         LinkedHashMap<String, Object> data = new LinkedHashMap<>();
         data.put("added setting1", true);
 
-        String expectedResult = "\n"
-                + "Property 'setting1' was added with value: true\n";
+        String expectedResult = "Property 'setting1' was added with value: true";
         Assertions.assertEquals(expectedResult, PlainFormat.convertToPlainFormat(data));
     }
 
@@ -96,8 +90,7 @@ public class PlainFormatTest {
                 new ArrayList<Integer>(Arrays.asList(TEST_INT_VALUE, TEST_INT_VALUE, TEST_INT_VALUE));
         data.put("added setting1", nestedValue);
 
-        String expectedResult = "\n"
-                + "Property 'setting1' was added with value: [complex value]\n";
+        String expectedResult = "Property 'setting1' was added with value: [complex value]";
         Assertions.assertEquals(expectedResult, PlainFormat.convertToPlainFormat(data));
     }
 
@@ -107,8 +100,7 @@ public class PlainFormatTest {
         ArrayList<Character> nestedValue = new ArrayList<Character>(Arrays.asList('a', 'b', 'c'));
         data.put("added setting1", nestedValue);
 
-        String expectedResult = "\n"
-                + "Property 'setting1' was added with value: [complex value]\n";
+        String expectedResult = "Property 'setting1' was added with value: [complex value]";
         Assertions.assertEquals(expectedResult, PlainFormat.convertToPlainFormat(data));
     }
 
@@ -118,8 +110,7 @@ public class PlainFormatTest {
         ArrayList<String> nestedValue = new ArrayList<String>(Arrays.asList("value1", "value2"));
         data.put("added setting1", nestedValue);
 
-        String expectedResult = "\n"
-                + "Property 'setting1' was added with value: [complex value]\n";
+        String expectedResult = "Property 'setting1' was added with value: [complex value]";
         Assertions.assertEquals(expectedResult, PlainFormat.convertToPlainFormat(data));
     }
 
@@ -131,8 +122,7 @@ public class PlainFormatTest {
         nestedValue.put("isNested", "true");
         data.put("added setting1", nestedValue);
 
-        String expectedResult = "\n"
-                + "Property 'setting1' was added with value: [complex value]\n";
+        String expectedResult = "Property 'setting1' was added with value: [complex value]";
         Assertions.assertEquals(expectedResult, PlainFormat.convertToPlainFormat(data));
     }
 
@@ -141,8 +131,7 @@ public class PlainFormatTest {
         LinkedHashMap<String, Object> data = new LinkedHashMap<>();
         data.put("added setting1", "null");
 
-        String expectedResult = "\n"
-                + "Property 'setting1' was added with value: null\n";
+        String expectedResult = "Property 'setting1' was added with value: null";
         Assertions.assertEquals(expectedResult, PlainFormat.convertToPlainFormat(data));
     }
 }

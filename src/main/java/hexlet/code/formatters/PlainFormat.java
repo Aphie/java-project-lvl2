@@ -13,7 +13,7 @@ public class PlainFormat {
     public static String convertToPlainFormat(Map<String, Object> diffMap) {
         Set<String> resultKeys = diffMap.keySet();
 
-        String resultString = "\n";
+        String resultString = "";
 
         for (String key: resultKeys) {
             String resultValue = "";
@@ -41,6 +41,9 @@ public class PlainFormat {
             } else if (key.startsWith("chan+")) {
                 resultString += resultValue + "\n";
             }
+        }
+        if (!resultString.equals("") && resultString.contains("\n")) {
+            resultString = resultString.substring(0, resultString.lastIndexOf("\n"));
         }
         return resultString;
     }
