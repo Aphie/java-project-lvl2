@@ -9,7 +9,8 @@ import java.util.Map;
 
 public class Formatter {
 
-    public static String toConvertWithFormat(Map<String, Object> diffMap, String format) throws JsonProcessingException {
+    public static String toConvertWithFormat(Map<String, Object> diffMap, String format)
+            throws JsonProcessingException {
         String resultString = "";
 
         if (format.equals("stylish")) {

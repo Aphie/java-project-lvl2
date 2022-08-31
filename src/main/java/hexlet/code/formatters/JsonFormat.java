@@ -39,7 +39,7 @@ public class JsonFormat {
             } else if (key.startsWith("chan+")) {
                 resultString += " ".repeat(DOUBLED_VALUE_FOR_STRING_REPEAT) + "\"currentValue\": "
                         + objectMapper.writeValueAsString(diffMap.get(key)) + "\n"
-                        + " ".repeat(VALUE_FOR_STRING_REPEAT) + "},\n";;
+                        + " ".repeat(VALUE_FOR_STRING_REPEAT) + "},\n";
             } else if (key.startsWith("unchanged")) {
                 resultString += " ".repeat(VALUE_FOR_STRING_REPEAT) + "\""
                         + key.substring(VALUE_FOR_NO_CHANGE_REPLACEMENT)
