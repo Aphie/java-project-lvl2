@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JsonFormat.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">hexlet.code.formatters</a> &gt; <span class="el_source">JsonFormat.java</span></div><h1>JsonFormat.java</h1><pre class="source lang-java linenums">package hexlet.code.formatters;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.Map;
+import java.util.Set;
+
+<span class="nc" id="L9">public class JsonFormat {</span>
+
+    public static final int VALUE_FOR_STRING_REPEAT = 2;
+    public static final int DOUBLED_VALUE_FOR_STRING_REPEAT = 4;
+    public static final int VALUE_FOR_ADDING_REPLACEMENT = 6;
+    public static final int VALUE_FOR_DELETION_REPLACEMENT = 8;
+    public static final int VALUE_FOR_NO_CHANGE_REPLACEMENT = 10;
+
+    public static String convertToJsonFormat(Map&lt;String, Object&gt; diffMap) throws JsonProcessingException {
+<span class="fc" id="L18">        ObjectMapper objectMapper = new ObjectMapper();</span>
+<span class="fc" id="L19">        String resultString = &quot;{\n&quot;;</span>
+<span class="fc" id="L20">        Set&lt;String&gt; resultKeys = diffMap.keySet();</span>
+<span class="fc bfc" id="L21" title="All 2 branches covered.">        for (String key: resultKeys) {</span>
+<span class="fc bfc" id="L22" title="All 2 branches covered.">            if (key.startsWith(&quot;added&quot;)) {</span>
+<span class="fc" id="L23">                resultString += &quot; &quot;.repeat(VALUE_FOR_STRING_REPEAT) + &quot;\&quot;&quot; + key.substring(VALUE_FOR_ADDING_REPLACEMENT)</span>
+<span class="fc" id="L24">                        + &quot;\&quot;: {\n&quot; + &quot; &quot;.repeat(DOUBLED_VALUE_FOR_STRING_REPEAT) + &quot;\&quot;action\&quot;: \&quot;added\&quot;,\n&quot;</span>
+<span class="fc" id="L25">                        + &quot; &quot;.repeat(DOUBLED_VALUE_FOR_STRING_REPEAT) + &quot;\&quot;value\&quot;: &quot; + objectMapper.writeValueAsString(diffMap.get(key)) + &quot;\n&quot;</span>
+<span class="fc" id="L26">                        + &quot; &quot;.repeat(VALUE_FOR_STRING_REPEAT) + &quot;},\n&quot;;</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">            } else if (key.startsWith(&quot;deleted&quot;)) {</span>
+<span class="fc" id="L28">                resultString += &quot; &quot;.repeat(VALUE_FOR_STRING_REPEAT) + &quot;\&quot;&quot; + key.substring(VALUE_FOR_DELETION_REPLACEMENT)</span>
+<span class="fc" id="L29">                        + &quot;\&quot;: {\n&quot; + &quot; &quot;.repeat(DOUBLED_VALUE_FOR_STRING_REPEAT) + &quot;\&quot;action\&quot;: \&quot;removed\&quot;\n&quot;</span>
+<span class="fc" id="L30">                        + &quot; &quot;.repeat(VALUE_FOR_STRING_REPEAT) + &quot;},\n&quot;;</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">            } else if (key.startsWith(&quot;change-&quot;)) {</span>
+<span class="fc" id="L32">                resultString += &quot; &quot;.repeat(VALUE_FOR_STRING_REPEAT) + &quot;\&quot;&quot; + key.substring(VALUE_FOR_DELETION_REPLACEMENT)</span>
+<span class="fc" id="L33">                        + &quot;\&quot;: {\n&quot; + &quot; &quot;.repeat(DOUBLED_VALUE_FOR_STRING_REPEAT) + &quot;\&quot;action\&quot;: \&quot;changed\&quot;,\n&quot;</span>
+<span class="fc" id="L34">                        + &quot; &quot;.repeat(DOUBLED_VALUE_FOR_STRING_REPEAT) + &quot;\&quot;previousValue\&quot;: &quot; + objectMapper.writeValueAsString(diffMap.get(key)) + &quot;,\n&quot;;</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">            } else if (key.startsWith(&quot;chan+&quot;)) {</span>
+<span class="fc" id="L36">                resultString += &quot; &quot;.repeat(DOUBLED_VALUE_FOR_STRING_REPEAT) + &quot;\&quot;currentValue\&quot;: &quot; + objectMapper.writeValueAsString(diffMap.get(key)) + &quot;\n&quot;</span>
+<span class="fc" id="L37">                        + &quot; &quot;.repeat(VALUE_FOR_STRING_REPEAT) + &quot;},\n&quot;;;</span>
+<span class="pc bpc" id="L38" title="1 of 2 branches missed.">            } else if (key.startsWith(&quot;unchanged&quot;)) {</span>
+<span class="fc" id="L39">                resultString += &quot; &quot;.repeat(VALUE_FOR_STRING_REPEAT) + &quot;\&quot;&quot; + key.substring(VALUE_FOR_NO_CHANGE_REPLACEMENT)</span>
+<span class="fc" id="L40">                        + &quot;\&quot;: {\n&quot; + &quot; &quot;.repeat(DOUBLED_VALUE_FOR_STRING_REPEAT) + &quot;\&quot;action\&quot;: \&quot;none\&quot;\n&quot;</span>
+<span class="fc" id="L41">                        + &quot; &quot;.repeat(VALUE_FOR_STRING_REPEAT) + &quot;},\n&quot;;</span>
+            }
+<span class="fc" id="L43">        }</span>
+<span class="fc" id="L44">        String resultStringWithoutLastComma = resultString.substring(0, resultString.lastIndexOf(&quot;,&quot;));</span>
+
+<span class="fc" id="L46">        resultStringWithoutLastComma += &quot;\n}&quot;;</span>
+<span class="fc" id="L47">        return resultStringWithoutLastComma;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
