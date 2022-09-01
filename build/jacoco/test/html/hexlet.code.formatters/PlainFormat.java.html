@@ -23,9 +23,9 @@ import java.util.Set;
                 } else {
 <span class="fc" id="L24">                    resultValue = &quot;'&quot; + diffMap.get(key).toString() + &quot;'&quot;;</span>
                 }
-<span class="fc bfc" id="L26" title="All 2 branches covered.">            } else if (((diffMap.get(key)).getClass() == ArrayList.class)</span>
-<span class="fc bfc" id="L27" title="All 2 branches covered.">                    || ((diffMap.get(key)).getClass() == LinkedHashMap.class)) {</span>
-<span class="fc" id="L28">                resultValue = &quot;[complex value]&quot;;</span>
+<span class="pc bpc" id="L26" title="1 of 2 branches missed.">            } else if (((diffMap.get(key)).getClass() == ArrayList.class)</span>
+<span class="pc bpc" id="L27" title="1 of 2 branches missed.">                    || ((diffMap.get(key)).getClass() == LinkedHashMap.class)) {</span>
+<span class="nc" id="L28">                resultValue = &quot;[complex value]&quot;;</span>
             } else {
 <span class="fc" id="L30">                resultValue = diffMap.get(key).toString();</span>
             }
@@ -42,7 +42,7 @@ import java.util.Set;
 <span class="fc" id="L42">                resultString += resultValue + &quot;\n&quot;;</span>
             }
 <span class="fc" id="L44">        }</span>
-<span class="fc bfc" id="L45" title="All 4 branches covered.">        if (!resultString.equals(&quot;&quot;) &amp;&amp; resultString.contains(&quot;\n&quot;)) {</span>
+<span class="pc bpc" id="L45" title="2 of 4 branches missed.">        if (!resultString.equals(&quot;&quot;) &amp;&amp; resultString.contains(&quot;\n&quot;)) {</span>
 <span class="fc" id="L46">            resultString = resultString.substring(0, resultString.lastIndexOf(&quot;\n&quot;));</span>
         }
 <span class="fc" id="L48">        return resultString;</span>

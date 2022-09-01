@@ -11,14 +11,14 @@ import java.util.Map;
 
     public static String toConvertWithFormat(Map&lt;String, Object&gt; diffMap, String format)
             throws JsonProcessingException {
-<span class="nc" id="L14">        String resultString = &quot;&quot;;</span>
+<span class="fc" id="L14">        String resultString = &quot;&quot;;</span>
 
-<span class="nc bnc" id="L16" title="All 2 branches missed.">        if (format.equals(&quot;stylish&quot;)) {</span>
+<span class="pc bpc" id="L16" title="1 of 2 branches missed.">        if (format.equals(&quot;stylish&quot;)) {</span>
 <span class="nc" id="L17">            resultString += StylishFormat.convertToStylishFormat(diffMap);</span>
 <span class="nc" id="L18">            return resultString;</span>
-<span class="nc bnc" id="L19" title="All 2 branches missed.">        } else if (format.equals(&quot;plain&quot;)) {</span>
-<span class="nc" id="L20">            resultString += PlainFormat.convertToPlainFormat(diffMap);</span>
-<span class="nc" id="L21">            return resultString;</span>
+<span class="pc bpc" id="L19" title="1 of 2 branches missed.">        } else if (format.equals(&quot;plain&quot;)) {</span>
+<span class="fc" id="L20">            resultString += PlainFormat.convertToPlainFormat(diffMap);</span>
+<span class="fc" id="L21">            return resultString;</span>
 <span class="nc bnc" id="L22" title="All 2 branches missed.">        } else if (format.equals(&quot;json&quot;)) {</span>
 <span class="nc" id="L23">            resultString += JsonFormat.convertToJsonFormat(diffMap);</span>
 <span class="nc" id="L24">            return resultString;</span>

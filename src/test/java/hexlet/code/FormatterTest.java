@@ -37,9 +37,9 @@ public class FormatterTest {
         data.put("change- setting3", true);
         data.put("chan+ setting3", "none");
         String format = "plain";
-        String expectedResult = "\nProperty 'setting1' was added with value: 'Some value'\n"
+        String expectedResult = "Property 'setting1' was added with value: 'Some value'\n"
                 + "Property 'id' was removed\n"
-                + "Property 'setting3' was updated. From true to 'none'\n";
+                + "Property 'setting3' was updated. From true to 'none'";
         Assertions.assertEquals(expectedResult, Formatter.toConvertWithFormat(data, format));
     }
 
