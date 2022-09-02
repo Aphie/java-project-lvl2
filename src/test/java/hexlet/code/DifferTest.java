@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 public class DifferTest {
     public static final String FORMAT = "stylish";
 
-    //yml добавить!
     @Test
     void differTestBase() throws Exception {
         Path filePath1 = Paths.get("src/test/resources/differTest/differTestBase_file1.json");

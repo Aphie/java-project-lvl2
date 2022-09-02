@@ -9,7 +9,7 @@
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleHome" value="//wsl$/Ubuntu/home/sandreyuk/.sdkman/candidates/gradle/7.1" />
-        <option name="gradleJvm" value="windows jdk-14" />
+        <option name="gradleJvm" value="17" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />

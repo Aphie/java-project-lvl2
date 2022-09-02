@@ -8,7 +8,7 @@ project-build: #сборка проекта
 lint-main: #проверка на стандарт кодирования Main
 	gradle checkstyleMain
 
-lint-test: #сборка проекта
+lint-test: #проверка на стандарт кодирования Test
 	gradle checkstyleTest
 
 run-test: #запуск тестов
