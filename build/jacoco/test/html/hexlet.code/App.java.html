@@ -5,46 +5,55 @@ import picocli.CommandLine.Option;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.concurrent.Callable;
 
 @CommandLine.Command(name = &quot;App&quot;, header = &quot;Compares two configuration files and shows a difference.&quot;, version = &quot;1.0&quot;)
-<span class="nc" id="L11">public class App implements Callable&lt;String&gt; {</span>
+<span class="nc" id="L12">public class App implements Callable&lt;String&gt; {</span>
 
     @CommandLine.Parameters(paramLabel = &quot;filepath1&quot;, description = &quot;path to first file&quot;)
-    private static Path filepath1;
+    private static String filepath1;
 
     @CommandLine.Parameters(paramLabel = &quot;filepath2&quot;, description = &quot;path to second file&quot;)
-    private static Path filepath2;
+    private static String filepath2;
 
-    @Option(names = { &quot;-f&quot;, &quot;--format&quot; }, defaultValue = &quot;stylish&quot;, description = &quot;output format [default: stylish]&quot;)
+    @Option(names = { &quot;-f&quot;, &quot;--format&quot; }, description = &quot;output format [default: stylish]&quot;)
     private static String format;
 
     @Option(names = { &quot;-h&quot;, &quot;--help&quot; }, usageHelp = true, description = &quot;Show this help message and exit.&quot;)
-<span class="nc" id="L23">    private static boolean usageHelpRequested = false;</span>
+<span class="nc" id="L24">    private static boolean usageHelpRequested = false;</span>
 
     @Option(names = { &quot;-v&quot;, &quot;--version&quot; }, versionHelp = true, description = &quot;Print version information and exit.&quot;)
     private static boolean versionRequested;
 
     @Override
     public final String call() throws Exception {
+<span class="nc" id="L31">        String resultDiff = &quot;&quot;;</span>
+<span class="nc" id="L32">        Path file1 = Paths.get(filepath1);</span>
+<span class="nc" id="L33">        Path file2 = Paths.get(filepath2);</span>
 
-<span class="nc bnc" id="L31" title="All 2 branches missed.">        if (!filepath1.isAbsolute()) {</span>
-<span class="nc" id="L32">            filepath1 = filepath1.toAbsolutePath();</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">        if (!file1.isAbsolute()) {</span>
+<span class="nc" id="L36">            filepath1 = file1.toAbsolutePath().toString();</span>
         }
 
-<span class="nc bnc" id="L35" title="All 2 branches missed.">        if (!filepath2.isAbsolute()) {</span>
-<span class="nc" id="L36">            filepath2 = filepath2.toAbsolutePath();</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">        if (!file2.isAbsolute()) {</span>
+<span class="nc" id="L40">            filepath2 = file2.toAbsolutePath().toString();</span>
         }
 
-<span class="nc" id="L39">        var diff = Differ.generate(filepath1, filepath2, format);</span>
-<span class="nc" id="L40">        System.out.println(diff);</span>
-<span class="nc" id="L41">        return null;</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        if (format.isEmpty()) {</span>
+<span class="nc" id="L44">            resultDiff = Differ.generate(filepath1, filepath2);</span>
+        } else {
+<span class="nc" id="L46">            resultDiff = Differ.generate(filepath1, filepath2, format);</span>
+        }
+
+<span class="nc" id="L49">        System.out.println(resultDiff);</span>
+<span class="nc" id="L50">        return null;</span>
     }
 
     public static void main(String[] args) throws IOException {
-<span class="nc" id="L45">        int exitCode = new CommandLine(new App()).execute(args);</span>
-<span class="nc" id="L46">        System.exit(exitCode);</span>
-<span class="nc" id="L47">    }</span>
+<span class="nc" id="L54">        int exitCode = new CommandLine(new App()).execute(args);</span>
+<span class="nc" id="L55">        System.exit(exitCode);</span>
+<span class="nc" id="L56">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

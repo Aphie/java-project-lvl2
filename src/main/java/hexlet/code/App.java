@@ -5,18 +5,19 @@ import picocli.CommandLine.Option;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.concurrent.Callable;
 
 @CommandLine.Command(name = "App", header = "Compares two configuration files and shows a difference.", version = "1.0")
 public class App implements Callable<String> {
 
     @CommandLine.Parameters(paramLabel = "filepath1", description = "path to first file")
-    private static Path filepath1;
+    private static String filepath1;
 
     @CommandLine.Parameters(paramLabel = "filepath2", description = "path to second file")
-    private static Path filepath2;
+    private static String filepath2;
 
-    @Option(names = { "-f", "--format" }, defaultValue = "stylish", description = "output format [default: stylish]")
+    @Option(names = { "-f", "--format" }, description = "output format [default: stylish]")
     private static String format;
 
     @Option(names = { "-h", "--help" }, usageHelp = true, description = "Show this help message and exit.")
@@ -27,17 +28,25 @@ public class App implements Callable<String> {
 
     @Override
     public final String call() throws Exception {
+        String resultDiff = "";
+        Path file1 = Paths.get(filepath1);
+        Path file2 = Paths.get(filepath2);
 
-        if (!filepath1.isAbsolute()) {
-            filepath1 = filepath1.toAbsolutePath();
+        if (!file1.isAbsolute()) {
+            filepath1 = file1.toAbsolutePath().toString();
         }
 
-        if (!filepath2.isAbsolute()) {
-            filepath2 = filepath2.toAbsolutePath();
+        if (!file2.isAbsolute()) {
+            filepath2 = file2.toAbsolutePath().toString();
         }
 
-        var diff = Differ.generate(filepath1, filepath2, format);
-        System.out.println(diff);
+        if (format.isEmpty()) {
+            resultDiff = Differ.generate(filepath1, filepath2);
+        } else {
+            resultDiff = Differ.generate(filepath1, filepath2, format);
+        }
+
+        System.out.println(resultDiff);
         return null;
     }
 
