@@ -1,11 +1,7 @@
 package hexlet.code;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import javax.print.DocFlavor;
 
 public class DifferTest {
     public static final String FORMAT = "stylish";
