@@ -3,10 +3,8 @@ package hexlet.code;
 import picocli.CommandLine;
 import picocli.CommandLine.Option;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 import java.util.concurrent.Callable;
 
 @CommandLine.Command(name = "App", header = "Compares two configuration files and shows a difference.", version = "1.0")
