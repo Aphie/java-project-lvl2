@@ -6,6 +6,7 @@ import picocli.CommandLine.Option;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.concurrent.Callable;
 
 @CommandLine.Command(name = "App", header = "Compares two configuration files and shows a difference.", version = "1.0")
@@ -28,6 +29,7 @@ public class App implements Callable<String> {
 
     @Override
     public final String call() throws Exception {
+
         String resultDiff = "";
         Path file1 = Paths.get(filepath1);
         Path file2 = Paths.get(filepath2);
@@ -35,12 +37,11 @@ public class App implements Callable<String> {
         if (!file1.isAbsolute()) {
             filepath1 = file1.toAbsolutePath().toString();
         }
-
         if (!file2.isAbsolute()) {
             filepath2 = file2.toAbsolutePath().toString();
         }
 
-        if (format.isEmpty()) {
+        if (format == null) {
             resultDiff = Differ.generate(filepath1, filepath2);
         } else {
             resultDiff = Differ.generate(filepath1, filepath2, format);
@@ -50,7 +51,7 @@ public class App implements Callable<String> {
         return null;
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         int exitCode = new CommandLine(new App()).execute(args);
         System.exit(exitCode);
     }
