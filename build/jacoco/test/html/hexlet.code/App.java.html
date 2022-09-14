@@ -3,14 +3,10 @@
 import picocli.CommandLine;
 import picocli.CommandLine.Option;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.List;
 import java.util.concurrent.Callable;
 
 @CommandLine.Command(name = &quot;App&quot;, header = &quot;Compares two configuration files and shows a difference.&quot;, version = &quot;1.0&quot;)
-<span class="fc" id="L13">public class App implements Callable&lt;String&gt; {</span>
+<span class="nc" id="L9">public class App implements Callable&lt;String&gt; {</span>
 
     @CommandLine.Parameters(paramLabel = &quot;filepath1&quot;, description = &quot;path to first file&quot;)
     private static String filepath1;
@@ -22,7 +18,7 @@ import java.util.concurrent.Callable;
     private static String format;
 
     @Option(names = { &quot;-h&quot;, &quot;--help&quot; }, usageHelp = true, description = &quot;Show this help message and exit.&quot;)
-<span class="fc" id="L25">    private static boolean usageHelpRequested = false;</span>
+<span class="nc" id="L21">    private static boolean usageHelpRequested = false;</span>
 
     @Option(names = { &quot;-v&quot;, &quot;--version&quot; }, versionHelp = true, description = &quot;Print version information and exit.&quot;)
     private static boolean versionRequested;
@@ -30,31 +26,14 @@ import java.util.concurrent.Callable;
     @Override
     public final String call() throws Exception {
 
-<span class="fc" id="L33">        String resultDiff = &quot;&quot;;</span>
-<span class="fc" id="L34">        Path file1 = Paths.get(filepath1);</span>
-<span class="fc" id="L35">        Path file2 = Paths.get(filepath2);</span>
-
-<span class="pc bpc" id="L37" title="1 of 2 branches missed.">        if (!file1.isAbsolute()) {</span>
-<span class="fc" id="L38">            filepath1 = file1.toAbsolutePath().toString();</span>
-        }
-<span class="pc bpc" id="L40" title="1 of 2 branches missed.">        if (!file2.isAbsolute()) {</span>
-<span class="fc" id="L41">            filepath2 = file2.toAbsolutePath().toString();</span>
-        }
-
-<span class="pc bpc" id="L44" title="1 of 2 branches missed.">        if (format == null) {</span>
-<span class="fc" id="L45">            resultDiff = Differ.generate(filepath1, filepath2);</span>
-        } else {
-<span class="nc" id="L47">            resultDiff = Differ.generate(filepath1, filepath2, format);</span>
-        }
-
-<span class="fc" id="L50">        System.out.println(resultDiff);</span>
-<span class="fc" id="L51">        return null;</span>
+<span class="nc" id="L29">        Launcher.launch(filepath1, filepath2, format);</span>
+<span class="nc" id="L30">        return null;</span>
     }
 
     public static void main(String[] args) throws Exception {
-<span class="nc" id="L55">        int exitCode = new CommandLine(new App()).execute(args);</span>
-<span class="nc" id="L56">        System.exit(exitCode);</span>
-<span class="nc" id="L57">    }</span>
+<span class="nc" id="L34">        int exitCode = new CommandLine(new App()).execute(args);</span>
+<span class="nc" id="L35">        System.exit(exitCode);</span>
+<span class="nc" id="L36">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

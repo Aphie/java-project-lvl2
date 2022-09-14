@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="hexlet.code.DifferTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2022-09-14T11:16:27" hostname="CSPBNTB3026" time="1.219">
+  <properties/>
+  <testcase name="differTestBaseWithFormat()" classname="hexlet.code.DifferTest" time="1.096"/>
+  <testcase name="differTestAllLinesChanged()" classname="hexlet.code.DifferTest" time="0.033"/>
+  <testcase name="differTestFirstFileEmpty()" classname="hexlet.code.DifferTest" time="0.014"/>
+  <testcase name="differTestAllLinesDeleted()" classname="hexlet.code.DifferTest" time="0.021"/>
+  <testcase name="differTestBothFileSame()" classname="hexlet.code.DifferTest" time="0.023"/>
+  <testcase name="differTestBothFileEmpty()" classname="hexlet.code.DifferTest" time="0.006"/>
+  <testcase name="differTestSecondFileEmpty()" classname="hexlet.code.DifferTest" time="0.013"/>
+  <testcase name="differTestBaseWithoutFormat()" classname="hexlet.code.DifferTest" time="0.006"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

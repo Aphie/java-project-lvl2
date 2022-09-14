@@ -14,12 +14,12 @@ import java.util.Set;
 <span class="fc" id="L14">        Set&lt;String&gt; resultKeys = diffMap.keySet();</span>
 <span class="fc" id="L15">        String resultString = &quot;{\n&quot;;</span>
 <span class="fc bfc" id="L16" title="All 2 branches covered.">        for (String key: resultKeys) {</span>
-<span class="pc bpc" id="L17" title="2 of 4 branches missed.">            if (key.startsWith(&quot;added&quot;) || key.startsWith(&quot;chan+&quot;)) {</span>
-<span class="nc" id="L18">                resultString += &quot; &quot;.repeat(TWO_TIMES) + &quot;+ &quot; + key.substring(VALUE_FOR_ADDING_REPLACEMENT)</span>
-<span class="nc" id="L19">                        + &quot;: &quot; + diffMap.get(key).toString() + &quot;\n&quot;;</span>
-<span class="pc bpc" id="L20" title="2 of 4 branches missed.">            } else if (key.startsWith(&quot;deleted&quot;) || key.startsWith(&quot;change-&quot;)) {</span>
-<span class="nc" id="L21">                resultString += &quot; &quot;.repeat(TWO_TIMES) + &quot;- &quot; + key.substring(VALUE_FOR_DELETION_REPLACEMENT)</span>
-<span class="nc" id="L22">                        + &quot;: &quot; + diffMap.get(key).toString() + &quot;\n&quot;;</span>
+<span class="fc bfc" id="L17" title="All 4 branches covered.">            if (key.startsWith(&quot;added&quot;) || key.startsWith(&quot;chan+&quot;)) {</span>
+<span class="fc" id="L18">                resultString += &quot; &quot;.repeat(TWO_TIMES) + &quot;+ &quot; + key.substring(VALUE_FOR_ADDING_REPLACEMENT)</span>
+<span class="fc" id="L19">                        + &quot;: &quot; + diffMap.get(key).toString() + &quot;\n&quot;;</span>
+<span class="fc bfc" id="L20" title="All 4 branches covered.">            } else if (key.startsWith(&quot;deleted&quot;) || key.startsWith(&quot;change-&quot;)) {</span>
+<span class="fc" id="L21">                resultString += &quot; &quot;.repeat(TWO_TIMES) + &quot;- &quot; + key.substring(VALUE_FOR_DELETION_REPLACEMENT)</span>
+<span class="fc" id="L22">                        + &quot;: &quot; + diffMap.get(key).toString() + &quot;\n&quot;;</span>
 <span class="pc bpc" id="L23" title="1 of 2 branches missed.">            } else if (key.startsWith(&quot;unchanged&quot;)) {</span>
 <span class="fc" id="L24">                resultString += &quot; &quot;.repeat(FOUR_TIMES) + key.substring(VALUE_FOR_NO_CHANGES_REPLACEMENT)</span>
 <span class="fc" id="L25">                        + &quot;: &quot; + diffMap.get(key).toString() + &quot;\n&quot;;</span>
