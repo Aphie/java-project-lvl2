@@ -1,7 +1,10 @@
 package hexlet.code.formatters;
 
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.LinkedHashMap;
 
 public class PlainFormat {
     public static final int VALUE_FOR_ADDING_REPLACEMENT = 6;
@@ -29,7 +32,7 @@ public class PlainFormat {
         return String.join("\n", resultArray);
     }
 
-    public static String calculateResultValue (Object value) {
+    public static String calculateResultValue(Object value) {
         String resultValue = "";
         if (value.getClass() == String.class) {
             if (value.toString().equals("null")) {

@@ -16,7 +16,8 @@ public class LauncherTest {
 
     @Test
     void launcherTestAbsolutePath() throws Exception {
-        String filePath = "C:\\Users\\s.andreyuk\\IdeaProjects\\app\\src\\test\\resources\\launcherTest\\launcherTestPath.json";
+        String filePath =
+                "C:\\Users\\s.andreyuk\\IdeaProjects\\app\\src\\test\\resources\\launcherTest\\launcherTestPath.json";
 
         String expected = new File("src/test/resources/launcherTest/launcherTestPath.json").getAbsolutePath();
         Assertions.assertEquals(expected, Launcher.checkAndConvertPaths(filePath));

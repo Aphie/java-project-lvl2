@@ -16,7 +16,8 @@ public class Parser {
         if (!content.isEmpty()) {
             if ((format.substring(dotIndex  + 1)).equals("json")) {
                 ObjectMapper objectMapper = new ObjectMapper();
-                MapType type = objectMapper.getTypeFactory().constructMapType(HashMap.class, String.class, Object.class);
+                MapType type = objectMapper.getTypeFactory()
+                        .constructMapType(HashMap.class, String.class, Object.class);
                 parsedData = objectMapper.readValue(content, type);
             } else if ((format.substring(dotIndex  + 1)).equals("yml")) {
                 ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
