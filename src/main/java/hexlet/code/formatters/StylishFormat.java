@@ -16,13 +16,13 @@ public class StylishFormat {
         for (String key: resultKeys) {
             if (key.startsWith("added") || key.startsWith("chan+")) {
                 resultString += " ".repeat(TWO_TIMES) + "+ " + key.substring(VALUE_FOR_ADDING_REPLACEMENT)
-                        + ": " + diffMap.get(key).toString() + "\n";
+                        + ": " + String.valueOf(diffMap.get(key)) + "\n";
             } else if (key.startsWith("deleted") || key.startsWith("change-")) {
                 resultString += " ".repeat(TWO_TIMES) + "- " + key.substring(VALUE_FOR_DELETION_REPLACEMENT)
-                        + ": " + diffMap.get(key).toString() + "\n";
+                        + ": " + String.valueOf(diffMap.get(key)) + "\n";
             } else if (key.startsWith("unchanged")) {
                 resultString += " ".repeat(FOUR_TIMES) + key.substring(VALUE_FOR_NO_CHANGES_REPLACEMENT)
-                        + ": " + diffMap.get(key).toString() + "\n";
+                        + ": " + String.valueOf(diffMap.get(key)) + "\n";
             }
         }
         resultString += "}";

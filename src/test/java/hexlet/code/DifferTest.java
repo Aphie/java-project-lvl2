@@ -113,7 +113,7 @@ public class DifferTest {
         String filePath1 = "src/test/resources/differTest/differTestBothFileEmpty_file1.json";
         String filePath2 = "src/test/resources/differTest/differTestBothFileEmpty_file2.json";
 
-        String expected = "Error: both files is empty";
+        String expected = "{\n}";
         Assertions.assertEquals(expected, Differ.generate(filePath1, filePath2, FORMAT));
     }
 

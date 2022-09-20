@@ -1,10 +1,7 @@
 package hexlet.code.formatters;
 
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class PlainFormat {
     public static final int VALUE_FOR_ADDING_REPLACEMENT = 6;
@@ -12,39 +9,40 @@ public class PlainFormat {
 
     public static String convertToPlainFormat(Map<String, Object> diffMap) {
         Set<String> resultKeys = diffMap.keySet();
-
-        String resultString = "";
+        List<String> resultArray = new ArrayList<>();
 
         for (String key: resultKeys) {
-            String resultValue = "";
-            if ((diffMap.get(key)).getClass() == String.class) {
-                if (diffMap.get(key).toString().equals("null")) {
-                    resultValue = diffMap.get(key).toString();
-                } else {
-                    resultValue = "'" + diffMap.get(key).toString() + "'";
-                }
-            } else if (((diffMap.get(key)).getClass() == ArrayList.class)
-                    || ((diffMap.get(key)).getClass() == LinkedHashMap.class)) {
-                resultValue = "[complex value]";
-            } else {
-                resultValue = diffMap.get(key).toString();
-            }
+            String resultValue = calculateResultValue(diffMap.get(key));
 
             if (key.startsWith("added")) {
-                resultString += "Property '" + key.substring(VALUE_FOR_ADDING_REPLACEMENT)
-                        + "' was added with value: " + resultValue + "\n";
+                resultArray.add("Property '" + key.substring(VALUE_FOR_ADDING_REPLACEMENT)
+                        + "' was added with value: " + resultValue );
             } else if (key.startsWith("deleted")) {
-                resultString += "Property '" + key.substring(VALUE_FOR_DELETION_REPLACEMENT) + "' was removed\n";
+                resultArray.add("Property '" + key.substring(VALUE_FOR_DELETION_REPLACEMENT) + "' was removed");
             } else if (key.startsWith("change-")) {
-                resultString += "Property '" + key.substring(VALUE_FOR_DELETION_REPLACEMENT)
-                        + "' was updated. From " + resultValue + " to ";
+                resultArray.add("Property '" + key.substring(VALUE_FOR_DELETION_REPLACEMENT)
+                        + "' was updated. From " + resultValue + " to ");
             } else if (key.startsWith("chan+")) {
-                resultString += resultValue + "\n";
+                resultArray.add(resultValue);
             }
         }
-        if (!resultString.equals("") && resultString.contains("\n")) {
-            resultString = resultString.substring(0, resultString.lastIndexOf("\n"));
+        return String.join("\n", resultArray);
+    }
+
+    public static String calculateResultValue (Object value) {
+        String resultValue = "";
+        if (value.getClass() == String.class) {
+            if (value.toString().equals("null")) {
+                resultValue = value.toString();
+            } else {
+                resultValue = "'" + value.toString() + "'";
+            }
+        } else if ((value.getClass() == ArrayList.class)
+                || (value.getClass() == LinkedHashMap.class)) {
+            resultValue = "[complex value]";
+        } else {
+            resultValue = value.toString();
         }
-        return resultString;
+        return resultValue;
     }
 }
