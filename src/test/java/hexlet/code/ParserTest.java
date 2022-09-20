@@ -71,8 +71,7 @@ public class ParserTest {
         Exception thrown = Assertions.assertThrows(Exception.class, () -> {
             Parser.getData(filePath.toString(), Files.readString(filePath));
         });
-        Assertions.assertEquals("ERROR: You entered filename without file format or tried to parse file with"
-                + " incorrect format", thrown.getMessage());
+        Assertions.assertEquals("ERROR: You entered filename without file format", thrown.getMessage());
     }
 
     @Test
@@ -82,8 +81,7 @@ public class ParserTest {
         Exception thrown = Assertions.assertThrows(Exception.class, () -> {
             Parser.getData(filePath.toString(), Files.readString(filePath));
         });
-        Assertions.assertEquals("ERROR: You entered filename without file format or tried to parse file with"
-                + " incorrect format", thrown.getMessage());
+        Assertions.assertEquals("ERROR: You tried to parse file with incorrect format", thrown.getMessage());
     }
 
     @Test

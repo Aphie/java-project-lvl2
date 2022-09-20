@@ -29,18 +29,30 @@ public class PlainFormat {
                 resultArray.add(resultValue);
             }
         }
-        return String.join("\n", resultArray);
+
+        List<String> concatenatedResultArray = new ArrayList<>();
+        if (resultArray.size()> 1) {
+            for (int i = 0; i < resultArray.size(); i++) {
+                if (resultArray.get(i).contains("updated")) {
+                    concatenatedResultArray.add(resultArray.get(i) + resultArray.get(i + 1));
+                    i++;
+                } else {
+                    concatenatedResultArray.add(resultArray.get(i));
+                }
+            }
+            return String.join("\n", concatenatedResultArray);
+        } else {
+            return String.join("\n", resultArray);
+        }
     }
 
     public static String calculateResultValue(Object value) {
         String resultValue = "";
-        if (value.getClass() == String.class) {
-            if (value.toString().equals("null")) {
-                resultValue = value.toString();
-            } else {
+        if (String.valueOf(value).equals("null")) {
+            resultValue = "null";
+        } else if (value.getClass() == String.class) {
                 resultValue = "'" + value.toString() + "'";
-            }
-        } else if ((value.getClass() == ArrayList.class)
+            } else if ((value.getClass() == ArrayList.class)
                 || (value.getClass() == LinkedHashMap.class)) {
             resultValue = "[complex value]";
         } else {

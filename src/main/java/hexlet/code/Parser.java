@@ -13,6 +13,10 @@ public class Parser {
         String format = filepath.substring(filepath.lastIndexOf('/') + 1);
         int dotIndex = format.lastIndexOf('.');
         Map<String, Object> parsedData = new HashMap<>();
+
+        if (!format.contains(".")) {
+            throw new Exception("ERROR: You entered filename without file format");
+        }
         if (!content.isEmpty()) {
             if ((format.substring(dotIndex  + 1)).equals("json")) {
                 ObjectMapper objectMapper = new ObjectMapper();
@@ -23,8 +27,7 @@ public class Parser {
                 ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
                 parsedData = mapper.readValue(content, new TypeReference<Map<String, Object>>() { });
             } else {
-                throw new Exception("ERROR: You entered filename without file format or tried to parse file with "
-                        + "incorrect format");
+                throw new Exception("ERROR: You tried to parse file with incorrect format");
             }
         }
         return parsedData;

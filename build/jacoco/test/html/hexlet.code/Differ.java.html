@@ -13,57 +13,57 @@ import java.util.Set;
 
     //СЃСЂР°РІРЅРµРЅРёРµ РґРІСѓС… С„Р°Р№Р»РѕРІ Р±РµР· РїРµСЂРµРґР°РЅРЅРѕРіРѕ С„РѕСЂРјР°С‚Р°
     public static String generate(String filePath1, String filePath2) throws Exception {
-<span class="fc" id="L16">        Path file1 = Paths.get(filePath1);</span>
-<span class="fc" id="L17">        Path file2 = Paths.get(filePath2);</span>
+<span class="nc" id="L16">        Path file1 = Paths.get(filePath1);</span>
+<span class="nc" id="L17">        Path file2 = Paths.get(filePath2);</span>
 
-<span class="fc" id="L19">        Map&lt;String, Object&gt; data1 = Parser.getData(filePath1, Files.readString(file1));</span>
-<span class="fc" id="L20">        Map&lt;String, Object&gt; data2 = Parser.getData(filePath2, Files.readString(file2));</span>
+<span class="nc" id="L19">        Map&lt;String, Object&gt; data1 = Parser.getData(filePath1, Files.readString(file1));</span>
+<span class="nc" id="L20">        Map&lt;String, Object&gt; data2 = Parser.getData(filePath2, Files.readString(file2));</span>
 
-<span class="fc" id="L22">        LinkedHashMap&lt;String, Object&gt; diffMap = diffFormation(data1, data2);</span>
-<span class="fc" id="L23">        String resultString = Formatter.toConvertWithFormat(diffMap, DEFAULT_FORMAT);</span>
-<span class="fc" id="L24">        return resultString;</span>
+<span class="nc" id="L22">        LinkedHashMap&lt;String, Object&gt; diffMap = diffFormation(data1, data2);</span>
+<span class="nc" id="L23">        String resultString = Formatter.toConvertWithFormat(diffMap, DEFAULT_FORMAT);</span>
+<span class="nc" id="L24">        return resultString;</span>
     }
 
     //СЃСЂР°РІРЅРµРЅРёРµ РґРІСѓС… С„Р°Р№Р»РѕРІ СЃ РїРµСЂРµРґР°РЅРЅС‹Рј С„РѕСЂРјР°С‚РѕРј
     public static String generate(String filePath1, String filePath2, String format) throws Exception {
-<span class="fc" id="L29">        Path file1 = Paths.get(filePath1);</span>
-<span class="fc" id="L30">        Path file2 = Paths.get(filePath2);</span>
+<span class="nc" id="L29">        Path file1 = Paths.get(filePath1);</span>
+<span class="nc" id="L30">        Path file2 = Paths.get(filePath2);</span>
 
-<span class="fc" id="L32">        Map&lt;String, Object&gt; data1 = Parser.getData(filePath1, Files.readString(file1));</span>
-<span class="fc" id="L33">        Map&lt;String, Object&gt; data2 = Parser.getData(filePath2, Files.readString(file2));</span>
+<span class="nc" id="L32">        Map&lt;String, Object&gt; data1 = Parser.getData(filePath1, Files.readString(file1));</span>
+<span class="nc" id="L33">        Map&lt;String, Object&gt; data2 = Parser.getData(filePath2, Files.readString(file2));</span>
 
-<span class="fc" id="L35">        LinkedHashMap&lt;String, Object&gt; diffMap = diffFormation(data1, data2);</span>
+<span class="nc" id="L35">        LinkedHashMap&lt;String, Object&gt; diffMap = diffFormation(data1, data2);</span>
 
-<span class="fc" id="L37">        String resultString = Formatter.toConvertWithFormat(diffMap, format);</span>
-<span class="fc" id="L38">        return resultString;</span>
+<span class="nc" id="L37">        String resultString = Formatter.toConvertWithFormat(diffMap, format);</span>
+<span class="nc" id="L38">        return resultString;</span>
     }
 
     public static LinkedHashMap&lt;String, Object&gt; diffFormation(Map&lt;String, Object&gt; data1, Map&lt;String, Object&gt; data2) {
-<span class="fc" id="L42">        LinkedHashMap&lt;String, Object&gt; diffMap = new LinkedHashMap&lt;&gt;();</span>
-<span class="fc" id="L43">        TreeSet&lt;String&gt; resultKeys = new TreeSet&lt;&gt;();</span>
+<span class="nc" id="L42">        LinkedHashMap&lt;String, Object&gt; diffMap = new LinkedHashMap&lt;&gt;();</span>
+<span class="nc" id="L43">        TreeSet&lt;String&gt; resultKeys = new TreeSet&lt;&gt;();</span>
 
-<span class="fc" id="L45">        Set&lt;String&gt; data1Keys = data1.keySet();</span>
-<span class="fc" id="L46">        Set&lt;String&gt; data2Keys = data2.keySet();</span>
-<span class="fc" id="L47">        resultKeys.addAll(data1Keys);</span>
-<span class="fc" id="L48">        resultKeys.addAll(data2Keys);</span>
+<span class="nc" id="L45">        Set&lt;String&gt; data1Keys = data1.keySet();</span>
+<span class="nc" id="L46">        Set&lt;String&gt; data2Keys = data2.keySet();</span>
+<span class="nc" id="L47">        resultKeys.addAll(data1Keys);</span>
+<span class="nc" id="L48">        resultKeys.addAll(data2Keys);</span>
 
-<span class="fc bfc" id="L50" title="All 2 branches covered.">        for (String k: resultKeys) {</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">        for (String k: resultKeys) {</span>
 
-<span class="fc bfc" id="L52" title="All 2 branches covered.">            if (!data1.containsKey(k)) {</span>
-<span class="fc" id="L53">                diffMap.put(&quot;added &quot; + k, data2.get(k));</span>
-<span class="fc bfc" id="L54" title="All 2 branches covered.">            } else if (!data2.containsKey(k)) {</span>
-<span class="fc" id="L55">                diffMap.put(&quot;deleted &quot; + k, data1.get(k));</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">            if (!data1.containsKey(k)) {</span>
+<span class="nc" id="L53">                diffMap.put(&quot;added &quot; + k, data2.get(k));</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">            } else if (!data2.containsKey(k)) {</span>
+<span class="nc" id="L55">                diffMap.put(&quot;deleted &quot; + k, data1.get(k));</span>
             } else {
-<span class="fc bfc" id="L57" title="All 2 branches covered.">                if (String.valueOf(data1.get(k)).equals(String.valueOf(data2.get(k)))) {</span>
-<span class="fc" id="L58">                    diffMap.put(&quot;unchanged &quot; + k, data1.get(k));</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">                if (String.valueOf(data1.get(k)).equals(String.valueOf(data2.get(k)))) {</span>
+<span class="nc" id="L58">                    diffMap.put(&quot;unchanged &quot; + k, data1.get(k));</span>
                 } else {
-<span class="fc" id="L60">                    diffMap.put(&quot;change- &quot; + k, data1.get(k));</span>
-<span class="fc" id="L61">                    diffMap.put(&quot;chan+ &quot; + k, data2.get(k));</span>
+<span class="nc" id="L60">                    diffMap.put(&quot;change- &quot; + k, data1.get(k));</span>
+<span class="nc" id="L61">                    diffMap.put(&quot;chan+ &quot; + k, data2.get(k));</span>
                 }
 
             }
-<span class="fc" id="L65">        }</span>
-<span class="fc" id="L66">        return diffMap;</span>
+<span class="nc" id="L65">        }</span>
+<span class="nc" id="L66">        return diffMap;</span>
     }
 
 }
