@@ -19,7 +19,7 @@ public class PlainFormat {
 
             if (key.startsWith("added")) {
                 resultArray.add("Property '" + key.substring(VALUE_FOR_ADDING_REPLACEMENT)
-                        + "' was added with value: " + resultValue );
+                        + "' was added with value: " + resultValue);
             } else if (key.startsWith("deleted")) {
                 resultArray.add("Property '" + key.substring(VALUE_FOR_DELETION_REPLACEMENT) + "' was removed");
             } else if (key.startsWith("change-")) {
@@ -31,7 +31,7 @@ public class PlainFormat {
         }
 
         List<String> concatenatedResultArray = new ArrayList<>();
-        if (resultArray.size()> 1) {
+        if (resultArray.size() > 1) {
             for (int i = 0; i < resultArray.size(); i++) {
                 if (resultArray.get(i).contains("updated")) {
                     concatenatedResultArray.add(resultArray.get(i) + resultArray.get(i + 1));
@@ -51,8 +51,8 @@ public class PlainFormat {
         if (String.valueOf(value).equals("null")) {
             resultValue = "null";
         } else if (value.getClass() == String.class) {
-                resultValue = "'" + value.toString() + "'";
-            } else if ((value.getClass() == ArrayList.class)
+            resultValue = "'" + value.toString() + "'";
+        } else if ((value.getClass() == ArrayList.class)
                 || (value.getClass() == LinkedHashMap.class)) {
             resultValue = "[complex value]";
         } else {
