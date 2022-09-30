@@ -2,152 +2,167 @@ package hexlet.code;
 
 import hexlet.code.formatters.StylishFormat;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 
 public class StylishFormatTest {
 
     public static final int TEST_INT_VALUE = 45;
+    Map<String, Object> dataMap = new HashMap<>();
+    List<Map<String, Object>> dataList = new ArrayList<>();
 
-    @Test
-    void stylishFormatTestUnchangedString() throws Exception {
-        LinkedHashMap<String, Object> data = new LinkedHashMap<>();
-        data.put("unchanged setting1", "Some value");
-
-        String expectedResult = "{\n"
-                + "    setting1: Some value\n"
-                + "}";
-        Assertions.assertEquals(expectedResult, StylishFormat.convertToStylishFormat(data));
+    @BeforeEach
+    public void initMap() {
+        dataMap.put("key", "setting1");
     }
 
     @Test
-    void stylishFormatTestAddedString() throws Exception {
-        LinkedHashMap<String, Object> data = new LinkedHashMap<>();
-        data.put("added setting1", "Some value");
+    void stylishFormatTestUnchangedString() {
+        dataMap.put("type", "none");
+        dataMap.put("value", "Some value");
+        dataList.add(dataMap);
 
         String expectedResult = "{\n"
-                + "  + setting1: Some value\n"
+                + "    " + dataMap.get("key") + ": Some value\n"
                 + "}";
-        Assertions.assertEquals(expectedResult, StylishFormat.convertToStylishFormat(data));
+        Assertions.assertEquals(expectedResult, StylishFormat.convertToStylishFormat(dataList));
     }
 
     @Test
-    void stylishFormatTestDeletedString() throws Exception {
-        LinkedHashMap<String, Object> data = new LinkedHashMap<>();
-        data.put("deleted setting1", "Some value");
+    void stylishFormatTestAddedString() {
+        dataMap.put("type", "added");
+        dataMap.put("value", "Some value");
+        dataList.add(dataMap);
 
         String expectedResult = "{\n"
-                + "  - setting1: Some value\n"
+                + "  + " + dataMap.get("key") + ": Some value\n"
                 + "}";
-        Assertions.assertEquals(expectedResult, StylishFormat.convertToStylishFormat(data));
+        Assertions.assertEquals(expectedResult, StylishFormat.convertToStylishFormat(dataList));
     }
 
     @Test
-    void stylishFormatTestChangedAddedString() throws Exception {
-        LinkedHashMap<String, Object> data = new LinkedHashMap<>();
-        data.put("chan+ setting1", "Some value");
+    void stylishFormatTestDeletedString() {
+        dataMap.put("type", "removed");
+        dataMap.put("value", "Some value");
+        dataList.add(dataMap);
 
         String expectedResult = "{\n"
-                + "  + setting1: Some value\n"
+                + "  - " + dataMap.get("key") + ": Some value\n"
                 + "}";
-        Assertions.assertEquals(expectedResult, StylishFormat.convertToStylishFormat(data));
+        Assertions.assertEquals(expectedResult, StylishFormat.convertToStylishFormat(dataList));
     }
 
     @Test
-    void stylishFormatTestChangedDeletedString() throws Exception {
-        LinkedHashMap<String, Object> data = new LinkedHashMap<>();
-        data.put("change- setting1", "Some value");
+    void stylishFormatTestUpdatedString() {
+        dataMap.put("type", "updated");
+        dataMap.put("oldValue", "Some value 1");
+        dataMap.put("newValue", "Some value 2");
+        dataList.add(dataMap);
 
         String expectedResult = "{\n"
-                + "  - setting1: Some value\n"
+                + "  - " + dataMap.get("key") + ": Some value 1\n"
+                + "  + " + dataMap.get("key") + ": Some value 2\n"
                 + "}";
-        Assertions.assertEquals(expectedResult, StylishFormat.convertToStylishFormat(data));
+        Assertions.assertEquals(expectedResult, StylishFormat.convertToStylishFormat(dataList));
     }
+
 
     @Test
     void stylishFormatTestOutputOfStringValue() throws Exception {
-        LinkedHashMap<String, Object> data = new LinkedHashMap<>();
-        data.put("unchanged setting1", "Some value");
+        dataMap.put("type", "none");
+        dataMap.put("value", "Some value");
+        dataList.add(dataMap);
 
         String expectedResult = "{\n"
-                + "    setting1: Some value\n"
+                + "    " + dataMap.get("key") + ": Some value\n"
                 + "}";
-        Assertions.assertEquals(expectedResult, StylishFormat.convertToStylishFormat(data));
+        Assertions.assertEquals(expectedResult, StylishFormat.convertToStylishFormat(dataList));
     }
 
     @Test
-    void stylishFormatTestOutputOfIntValue() throws Exception {
-        LinkedHashMap<String, Object> data = new LinkedHashMap<>();
-        data.put("unchanged setting1", TEST_INT_VALUE);
+    void stylishFormatTestOutputOfIntValue() {
+        dataMap.put("type", "none");
+        dataMap.put("value", TEST_INT_VALUE);
+        dataList.add(dataMap);
 
         String expectedResult = "{\n"
-                + "    setting1: " + TEST_INT_VALUE + "\n"
+                + "    " + dataMap.get("key") + ": " + TEST_INT_VALUE + "\n"
                 + "}";
-        Assertions.assertEquals(expectedResult, StylishFormat.convertToStylishFormat(data));
+        Assertions.assertEquals(expectedResult, StylishFormat.convertToStylishFormat(dataList));
     }
 
     @Test
-    void stylishFormatTestOutputOfBooleanValue() throws Exception {
-        LinkedHashMap<String, Object> data = new LinkedHashMap<>();
-        data.put("unchanged setting1", true);
+    void stylishFormatTestOutputOfBooleanValue() {
+        dataMap.put("type", "none");
+        dataMap.put("value", true);
+        dataList.add(dataMap);
 
         String expectedResult = "{\n"
-                + "    setting1: true\n"
+                + "    " + dataMap.get("key") + ": true\n"
                 + "}";
-        Assertions.assertEquals(expectedResult, StylishFormat.convertToStylishFormat(data));
+        Assertions.assertEquals(expectedResult, StylishFormat.convertToStylishFormat(dataList));
     }
 
     @Test
-    void stylishFormatTestOutputOfArrayListIntValue() throws Exception {
-        LinkedHashMap<String, Object> data = new LinkedHashMap<>();
+    void stylishFormatTestOutputOfArrayListIntValue() {
         ArrayList<Integer> nestedValue =
                 new ArrayList<Integer>(Arrays.asList(TEST_INT_VALUE, TEST_INT_VALUE, TEST_INT_VALUE));
-        data.put("unchanged setting1", nestedValue);
+        dataMap.put("type", "none");
+        dataMap.put("value", nestedValue);
+        dataList.add(dataMap);
 
         String expectedResult = "{\n"
-                + "    setting1: [" + TEST_INT_VALUE + ", " + TEST_INT_VALUE + ", " + TEST_INT_VALUE + "]\n"
+                + "    " + dataMap.get("key") + ": [" + TEST_INT_VALUE + ", "
+                + TEST_INT_VALUE + ", " + TEST_INT_VALUE + "]\n"
                 + "}";
-        Assertions.assertEquals(expectedResult, StylishFormat.convertToStylishFormat(data));
+        Assertions.assertEquals(expectedResult, StylishFormat.convertToStylishFormat(dataList));
     }
 
     @Test
-    void stylishFormatTestOutputOfArrayListCharacterValue() throws Exception {
-        LinkedHashMap<String, Object> data = new LinkedHashMap<>();
+    void stylishFormatTestOutputOfArrayListCharacterValue() {
         ArrayList<Character> nestedValue = new ArrayList<Character>(Arrays.asList('a', 'b', 'c'));
-        data.put("unchanged setting1", nestedValue);
+        dataMap.put("type", "none");
+        dataMap.put("value", nestedValue);
+        dataList.add(dataMap);
 
         String expectedResult = "{\n"
-                + "    setting1: [a, b, c]\n"
+                + "    " + dataMap.get("key") + ": [a, b, c]\n"
                 + "}";
-        Assertions.assertEquals(expectedResult, StylishFormat.convertToStylishFormat(data));
+        Assertions.assertEquals(expectedResult, StylishFormat.convertToStylishFormat(dataList));
     }
 
     @Test
-    void stylishFormatTestOutputOfArrayListStringValue() throws Exception {
-        LinkedHashMap<String, Object> data = new LinkedHashMap<>();
+    void stylishFormatTestOutputOfArrayListStringValue() {
         ArrayList<String> nestedValue = new ArrayList<String>(Arrays.asList("value1", "value2"));
-        data.put("unchanged setting1", nestedValue);
+        dataMap.put("type", "none");
+        dataMap.put("value", nestedValue);
+        dataList.add(dataMap);
 
         String expectedResult = "{\n"
-                + "    setting1: [value1, value2]\n"
+                + "    " + dataMap.get("key") + ": [value1, value2]\n"
                 + "}";
-        Assertions.assertEquals(expectedResult, StylishFormat.convertToStylishFormat(data));
+        Assertions.assertEquals(expectedResult, StylishFormat.convertToStylishFormat(dataList));
     }
 
     @Test
-    void stylishFormatTestOutputOfLinkedHashMapValue() throws Exception {
-        LinkedHashMap<String, Object> data = new LinkedHashMap<>();
+    void stylishFormatTestOutputOfLinkedHashMapValue() {
         LinkedHashMap<String, String> nestedValue = new LinkedHashMap<>();
         nestedValue.put("nestedKey", "value");
         nestedValue.put("isNested", "true");
-        data.put("unchanged setting1", nestedValue);
+        dataMap.put("type", "none");
+        dataMap.put("value", nestedValue);
+        dataList.add(dataMap);
 
         String expectedResult = "{\n"
-                + "    setting1: {nestedKey=value, isNested=true}\n"
+                + "    " + dataMap.get("key") + ": {nestedKey=value, isNested=true}\n"
                 + "}";
-        Assertions.assertEquals(expectedResult, StylishFormat.convertToStylishFormat(data));
+        Assertions.assertEquals(expectedResult, StylishFormat.convertToStylishFormat(dataList));
     }
 }

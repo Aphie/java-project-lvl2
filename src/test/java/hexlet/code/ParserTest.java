@@ -12,11 +12,11 @@ import java.util.Map;
 public class ParserTest {
 
     public static final int TEST_INT_VALUE = 45;
+    Map<String, Object> expectedMap = new HashMap<>();
 
     @Test
     void parserTestBaseJson() throws Exception {
         Path filePath = Paths.get("src/test/resources/parserTest/parserTestBaseJson.json");
-        Map<String, Object> expectedMap = new HashMap<>();
         expectedMap.put("proxy", "123.234.53.22");
         expectedMap.put("default", "null");
         expectedMap.put("chars1", "[a, b, c]");
@@ -42,7 +42,6 @@ public class ParserTest {
     @Test
     void parserTestBaseYml() throws Exception {
         Path filePath = Paths.get("src/test/resources/parserTest/parserTestBaseYml.yml");
-        Map<String, Object> expectedMap = new HashMap<>();
         expectedMap.put("proxy", "123.234.53.22");
         expectedMap.put("default", "null");
         expectedMap.put("chars1", "[a, b, c]");
@@ -87,7 +86,6 @@ public class ParserTest {
     @Test
     void parserTestSeveralDotsInName() throws Exception {
         Path filePath = Paths.get("src/test/resources/parserTest/parserTest.Several.DotsIn.Name.json");
-        Map<String, Object> expectedMap = new HashMap<>();
         expectedMap.put("host", "hexlet.io");
         boolean expected = true;
 
@@ -105,7 +103,6 @@ public class ParserTest {
     @Test
     void parserTestSeveralDotsInPath() throws Exception {
         Path filePath = Paths.get("src/test/resources/parserTest/.json/.yml/parserTestSeveralDotsInPath.yml");
-        Map<String, Object> expectedMap = new HashMap<>();
         expectedMap.put("host", "hexlet.io");
         boolean expected = true;
 
