@@ -22,7 +22,7 @@ jobs:
         run: make project-build
 
       - name: test & publish code coverage
-        uses: paambaati/codeclimate-action@v2.5.7
+        uses: paambaati/codeclimate-action@v3.0.0
         env:
           # Set CC_TEST_REPORTER_ID as secret of your repo
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
