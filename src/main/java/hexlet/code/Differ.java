@@ -3,7 +3,8 @@ package hexlet.code;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.Map;
+import java.util.List;
 
 public class Differ {
     public static final String DEFAULT_FORMAT = "stylish";
