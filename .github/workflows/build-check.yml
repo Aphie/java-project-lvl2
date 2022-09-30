@@ -29,5 +29,5 @@ jobs:
           JACOCO_SOURCE_PATH: "${{github.workspace}}app/src/main/java"
         with:
           # The report file must be there, otherwise Code Climate won't find it
-          coverageCommand: gradle test
+          coverageCommand: make -C app run-test
           coverageLocations: ${{github.workspace}}/app/build/jacoco/test/jacocoTestReport.xml:jacoco
