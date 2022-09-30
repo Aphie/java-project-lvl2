@@ -22,7 +22,7 @@ public class PlainFormat {
                         + calculateResultValue(diffMap.get("newValue")) + "\n";
             }
         }
-        return resultString.substring(0, resultString.lastIndexOf("\n");
+        return resultString.substring(0, resultString.lastIndexOf("\n"));
     }
 
     public static String calculateResultValue(Object value) {
