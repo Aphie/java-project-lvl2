@@ -65,7 +65,7 @@ public class FormatterTest {
         String format = "plain";
         String expectedResult = "Property 'setting1' was added with value: 'Some value'\n"
                 + "Property 'id' was removed\n"
-                + "Property 'setting3' was updated. From true to [complex value]\n";
+                + "Property 'setting3' was updated. From true to [complex value]";
         Assertions.assertEquals(expectedResult, Formatter.toConvertWithFormat(dataList, format));
     }
 

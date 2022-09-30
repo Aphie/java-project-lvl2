@@ -39,7 +39,7 @@ public class PlainFormatTest {
         dataMap.put("value", "Some value");
         dataList.add(dataMap);
 
-        String expectedResult = "Property '" + dataMap.get("key") + "' was added with value: 'Some value'\n";
+        String expectedResult = "Property '" + dataMap.get("key") + "' was added with value: 'Some value'";
         Assertions.assertEquals(expectedResult, PlainFormat.convertToPlainFormat(dataList));
     }
 
@@ -49,7 +49,7 @@ public class PlainFormatTest {
         dataMap.put("value", "Some value");
         dataList.add(dataMap);
 
-        String expectedResult = "Property '" + dataMap.get("key") + "' was removed\n";
+        String expectedResult = "Property '" + dataMap.get("key") + "' was removed";
         Assertions.assertEquals(expectedResult, PlainFormat.convertToPlainFormat(dataList));
     }
 
@@ -61,7 +61,7 @@ public class PlainFormatTest {
         dataList.add(dataMap);
 
         String expectedResult = "Property '" + dataMap.get("key")
-                + "' was updated. From 'Some value 1' to 'Some value 2'\n";
+                + "' was updated. From 'Some value 1' to 'Some value 2'";
         Assertions.assertEquals(expectedResult, PlainFormat.convertToPlainFormat(dataList));
     }
 
@@ -72,7 +72,7 @@ public class PlainFormatTest {
         dataMap.put("value", "Some value");
         dataList.add(dataMap);
 
-        String expectedResult = "Property '" + dataMap.get("key") + "' was added with value: 'Some value'\n";
+        String expectedResult = "Property '" + dataMap.get("key") + "' was added with value: 'Some value'";
         Assertions.assertEquals(expectedResult, PlainFormat.convertToPlainFormat(dataList));
     }
 
@@ -82,7 +82,7 @@ public class PlainFormatTest {
         dataMap.put("value", TEST_INT_VALUE);
         dataList.add(dataMap);
 
-        String expectedResult = "Property '" + dataMap.get("key") + "' was added with value: " + TEST_INT_VALUE + '\n';
+        String expectedResult = "Property '" + dataMap.get("key") + "' was added with value: " + TEST_INT_VALUE;
         Assertions.assertEquals(expectedResult, PlainFormat.convertToPlainFormat(dataList));
     }
 
@@ -92,7 +92,7 @@ public class PlainFormatTest {
         dataMap.put("value", true);
         dataList.add(dataMap);
 
-        String expectedResult = "Property '" + dataMap.get("key") + "' was added with value: true\n";
+        String expectedResult = "Property '" + dataMap.get("key") + "' was added with value: true";
         Assertions.assertEquals(expectedResult, PlainFormat.convertToPlainFormat(dataList));
     }
 
@@ -104,7 +104,7 @@ public class PlainFormatTest {
         dataMap.put("value", nestedValue);
         dataList.add(dataMap);
 
-        String expectedResult = "Property '" + dataMap.get("key") + "' was added with value: [complex value]\n";
+        String expectedResult = "Property '" + dataMap.get("key") + "' was added with value: [complex value]";
         Assertions.assertEquals(expectedResult, PlainFormat.convertToPlainFormat(dataList));
     }
 
@@ -115,7 +115,7 @@ public class PlainFormatTest {
         dataMap.put("value", nestedValue);
         dataList.add(dataMap);
 
-        String expectedResult = "Property '" + dataMap.get("key") + "' was added with value: [complex value]\n";
+        String expectedResult = "Property '" + dataMap.get("key") + "' was added with value: [complex value]";
         Assertions.assertEquals(expectedResult, PlainFormat.convertToPlainFormat(dataList));
     }
 
@@ -126,7 +126,7 @@ public class PlainFormatTest {
         dataMap.put("value", nestedValue);
         dataList.add(dataMap);
 
-        String expectedResult = "Property '" + dataMap.get("key") + "' was added with value: [complex value]\n";
+        String expectedResult = "Property '" + dataMap.get("key") + "' was added with value: [complex value]";
         Assertions.assertEquals(expectedResult, PlainFormat.convertToPlainFormat(dataList));
     }
 
@@ -139,7 +139,7 @@ public class PlainFormatTest {
         dataMap.put("value", nestedValue);
         dataList.add(dataMap);
 
-        String expectedResult = "Property '" + dataMap.get("key") + "' was added with value: [complex value]\n";
+        String expectedResult = "Property '" + dataMap.get("key") + "' was added with value: [complex value]";
         Assertions.assertEquals(expectedResult, PlainFormat.convertToPlainFormat(dataList));
     }
 
@@ -149,7 +149,7 @@ public class PlainFormatTest {
         dataMap.put("value", null);
         dataList.add(dataMap);
 
-        String expectedResult = "Property '" + dataMap.get("key") + "' was added with value: null\n";
+        String expectedResult = "Property '" + dataMap.get("key") + "' was added with value: null";
         Assertions.assertEquals(expectedResult, PlainFormat.convertToPlainFormat(dataList));
     }
 }

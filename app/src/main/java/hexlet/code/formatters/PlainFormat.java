@@ -22,6 +22,10 @@ public class PlainFormat {
                         + calculateResultValue(diffMap.get("newValue")) + "\n";
             }
         }
+        if (resultString.isEmpty()) {
+            resultString = "\n";
+        }
+
         return resultString.substring(0, resultString.lastIndexOf("\n"));
     }
 
