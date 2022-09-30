@@ -12,6 +12,6 @@ lint-test: #проверка на стандарт кодирования Test
 	gradle checkstyleTest
 
 run-test: #запуск тестов
-	gradle test1
+	gradle test
 
 .PHONY: build
