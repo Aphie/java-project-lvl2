@@ -10,10 +10,10 @@ import java.util.List;
 
 public class DifferenceFormationTest {
 
-    Map<String, Object> data1Map = new HashMap<>();
-    Map<String, Object> data2Map = new HashMap<>();
-    Map<String, Object> dataMapExpected = new HashMap<>();
-    List<Map<String, Object>> dataList = new ArrayList<>();
+    private Map<String, Object> data1Map = new HashMap<>();
+    private Map<String, Object> data2Map = new HashMap<>();
+    private Map<String, Object> dataMapExpected = new HashMap<>();
+    private List<Map<String, Object>> dataList = new ArrayList<>();
 
     @Test
     void diffFormationAddedTest() {

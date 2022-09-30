@@ -15,11 +15,11 @@ import java.util.LinkedHashMap;
 public class PlainFormatTest {
 
     public static final int TEST_INT_VALUE = 45;
-    Map<String, Object> dataMap = new HashMap<>();
-    List<Map<String, Object>> dataList = new ArrayList<>();
+    private Map<String, Object> dataMap = new HashMap<>();
+    private List<Map<String, Object>> dataList = new ArrayList<>();
 
     @BeforeEach
-    public void initMap() {
+    public final void initMap() {
         dataMap.put("key", "setting1");
     }
 

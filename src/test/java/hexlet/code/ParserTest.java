@@ -12,7 +12,7 @@ import java.util.Map;
 public class ParserTest {
 
     public static final int TEST_INT_VALUE = 45;
-    Map<String, Object> expectedMap = new HashMap<>();
+    private Map<String, Object> expectedMap = new HashMap<>();
 
     @Test
     void parserTestBaseJson() throws Exception {

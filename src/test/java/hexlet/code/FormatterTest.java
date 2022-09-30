@@ -13,16 +13,16 @@ import java.util.Arrays;
 public class FormatterTest {
 
     public static final int TEST_INT_VALUE = 45;
-    Map<String, Object> dataMapAdded = new HashMap<>();
-    Map<String, Object> dataMapDeleted = new HashMap<>();
-    Map<String, Object> dataMapUnchanged = new HashMap<>();
-    Map<String, Object> dataMapUpdated = new HashMap<>();
-    List<Map<String, Object>> dataList = new ArrayList<>();
-    ArrayList<Integer> nestedValue =
+    private Map<String, Object> dataMapAdded = new HashMap<>();
+    private Map<String, Object> dataMapDeleted = new HashMap<>();
+    private Map<String, Object> dataMapUnchanged = new HashMap<>();
+    private Map<String, Object> dataMapUpdated = new HashMap<>();
+    private List<Map<String, Object>> dataList = new ArrayList<>();
+    private ArrayList<Integer> nestedValue =
             new ArrayList<Integer>(Arrays.asList(TEST_INT_VALUE, TEST_INT_VALUE, TEST_INT_VALUE));
 
     @BeforeEach
-    public void initMaps() {
+    public final void initMaps() {
         dataMapAdded.put("key", "setting1");
         dataMapAdded.put("type", "added");
         dataMapAdded.put("value", "Some value");
@@ -61,7 +61,7 @@ public class FormatterTest {
     }
 
     @Test
-    void formatterTestBasePlain() throws Exception {;
+    void formatterTestBasePlain() throws Exception {
         String format = "plain";
         String expectedResult = "Property 'setting1' was added with value: 'Some value'\n"
                 + "Property 'id' was removed\n"
@@ -70,25 +70,25 @@ public class FormatterTest {
     }
 
     @Test
-    void formatterTestBaseJson() throws Exception {;
+    void formatterTestBaseJson() throws Exception {
         String format = "json";
-        String expectedResult = "{\n" +
-                "  \"setting1\": {\n" +
-                "    \"action\": \"added\",\n" +
-                "    \"value\": \"Some value\"\n" +
-                "  },\n" +
-                "  \"default\": {\n" +
-                "    \"action\": \"none\"\n" +
-                "  },\n" +
-                "  \"id\": {\n" +
-                "    \"action\": \"removed\"\n" +
-                "  },\n" +
-                "  \"setting3\": {\n" +
-                "    \"action\": \"updated\",\n" +
-                "    \"previousValue\": true,\n" +
-                "    \"newValue\": [45,45,45]\n" +
-                "  }\n" +
-                "}";
+        String expectedResult = "{\n"
+                + "  \"setting1\": {\n"
+                + "    \"action\": \"added\",\n"
+                + "    \"value\": \"Some value\"\n"
+                + "  },\n"
+                + "  \"default\": {\n"
+                + "    \"action\": \"none\"\n"
+                + "  },\n"
+                + "  \"id\": {\n"
+                + "    \"action\": \"removed\"\n"
+                + "  },\n"
+                + "  \"setting3\": {\n"
+                + "    \"action\": \"updated\",\n"
+                + "    \"previousValue\": true,\n"
+                + "    \"newValue\": [45,45,45]\n"
+                + "  }\n"
+                + "}";
         Assertions.assertEquals(expectedResult, Formatter.toConvertWithFormat(dataList, format));
     }
 
