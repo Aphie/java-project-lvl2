@@ -1,15 +1,17 @@
 # Makefile
 run-dist: # запуск исполняемого файла
-	./build/install/app/bin/app
+	make -C app run-dist
 
 project-build: #сборка проекта
-	gradle clean build
+	make -C app project-build
 
 lint-main: #проверка на стандарт кодирования Main
-	gradle checkstyleMain
+	make -C app lint-main
 
 lint-test: #проверка на стандарт кодирования Test
-	gradle checkstyleTest
+	make -C app lint-test
 
 run-test: #запуск тестов
-	gradle test
+	make -C app run-test
+
+.PHONY: build
