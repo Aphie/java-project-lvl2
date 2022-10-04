@@ -40,7 +40,7 @@ compileJava {
 
 checkstyle {
     // project.ext.checkstyleVersion = '8.20'
-    configFile = file("${rootDir}/checkstyle.xml")
+    configFile = file("${rootDir}/config/checkstyle.xml")
 }
 
 jacoco {

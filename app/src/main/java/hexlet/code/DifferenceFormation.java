@@ -20,14 +20,13 @@ public class DifferenceFormation {
                 diffList.add(createMapForOneValue(k, data2.get(k), "added"));
             } else if (!data2.containsKey(k)) {
                 diffList.add(createMapForOneValue(k, data1.get(k), "removed"));
-            } else {
-                if (String.valueOf(data1.get(k)).equals(String.valueOf(data2.get(k)))) {
+            } else if (String.valueOf(data1.get(k)).equals(String.valueOf(data2.get(k)))) {
                     diffList.add(createMapForOneValue(k, data1.get(k), "none"));
-                } else {
-                    diffList.add(createMapForTwoValues(k, data1.get(k), data2.get(k)));
-                }
+            } else {
+                diffList.add(createMapForTwoValues(k, data1.get(k), data2.get(k)));
             }
         }
+
         return diffList;
     }
 

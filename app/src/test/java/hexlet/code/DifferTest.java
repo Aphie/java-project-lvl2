@@ -69,7 +69,7 @@ public class DifferTest {
                 + "  - setting3: true\n"
                 + "  + setting3: none\n"
                 + "}";
-        Assertions.assertEquals(expected, Differ.generate(filePath1, filePath2));
+        Assertions.assertEquals(expected, Differ.generate(filePath1, filePath2, FORMAT));
     }
 
     @Test
@@ -159,7 +159,7 @@ public class DifferTest {
                 + "  - setting2: 200\n"
                 + "  - setting3: true\n"
                 + "}";
-        Assertions.assertEquals(expected, Differ.generate(filePath1, filePath2));
+        Assertions.assertEquals(expected, Differ.generate(filePath1, filePath2, FORMAT));
     }
 
     @Test
