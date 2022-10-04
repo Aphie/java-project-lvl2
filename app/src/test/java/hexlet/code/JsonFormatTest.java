@@ -117,7 +117,7 @@ public class JsonFormatTest {
         dataList.add(dataMap);
 
         String expectedResult = "{\n"
-                + "\"setting1\":{\"action\":\"added\",\"value\":[" + TEST_INT_VALUE+ "," + TEST_INT_VALUE
+                + "\"setting1\":{\"action\":\"added\",\"value\":[" + TEST_INT_VALUE + "," + TEST_INT_VALUE
                 + "," + TEST_INT_VALUE + "]}\n"
                 + "}";
         Assertions.assertEquals(expectedResult, JsonFormat.convertToJsonFormat(dataList));
