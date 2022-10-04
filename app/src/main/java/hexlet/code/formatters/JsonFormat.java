@@ -18,14 +18,19 @@ public class JsonFormat {
 
         for (Map<String, Object> diffMap : diffList) {
             if (diffMap.get("type").equals("added")) {
-                Map<String, Object> temporaryMap = toCreateTemporaryMap(diffMap.get("type"), diffMap.get("value"), null);
-                resultString += objectMapper.writeValueAsString(diffMap.get("key")) + ":" + objectMapper.writeValueAsString(temporaryMap) + ",\n";
+                Map<String, Object> temporaryMap =
+                        toCreateTemporaryMap(diffMap.get("type"), diffMap.get("value"), null);
+                resultString += objectMapper.writeValueAsString(diffMap.get("key")) + ":"
+                        + objectMapper.writeValueAsString(temporaryMap) + ",\n";
             } else if (diffMap.get("type").equals("removed") || diffMap.get("type").equals("none")) {
                 Map<String, Object> temporaryMap = toCreateTemporaryMap(diffMap.get("type"), null, null);
-                resultString += objectMapper.writeValueAsString(diffMap.get("key")) + ":" + objectMapper.writeValueAsString(temporaryMap) + ",\n";
+                resultString += objectMapper.writeValueAsString(diffMap.get("key")) + ":"
+                        + objectMapper.writeValueAsString(temporaryMap) + ",\n";
             } else {
-                Map<String, Object> temporaryMap = toCreateTemporaryMap(diffMap.get("type"), diffMap.get("oldValue"), diffMap.get("newValue"));
-                resultString += objectMapper.writeValueAsString(diffMap.get("key")) + ":" + objectMapper.writeValueAsString(temporaryMap) + ",\n";
+                Map<String, Object> temporaryMap =
+                        toCreateTemporaryMap(diffMap.get("type"), diffMap.get("oldValue"), diffMap.get("newValue"));
+                resultString += objectMapper.writeValueAsString(diffMap.get("key")) + ":"
+                        + objectMapper.writeValueAsString(temporaryMap) + ",\n";
             }
         }
 

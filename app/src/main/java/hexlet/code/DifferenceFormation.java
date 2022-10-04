@@ -21,7 +21,7 @@ public class DifferenceFormation {
             } else if (!data2.containsKey(k)) {
                 diffList.add(createMapForOneValue(k, data1.get(k), "removed"));
             } else if (String.valueOf(data1.get(k)).equals(String.valueOf(data2.get(k)))) {
-                    diffList.add(createMapForOneValue(k, data1.get(k), "none"));
+                diffList.add(createMapForOneValue(k, data1.get(k), "none"));
             } else {
                 diffList.add(createMapForTwoValues(k, data1.get(k), data2.get(k)));
             }
