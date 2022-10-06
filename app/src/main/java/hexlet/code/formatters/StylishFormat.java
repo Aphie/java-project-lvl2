@@ -9,26 +9,27 @@ public class StylishFormat {
 
     public static String convertToStylishFormat(List<Map<String, Object>> diffList) {
         String resultString = "{\n";
+        StringBuilder result = new StringBuilder(resultString);
 
         for (Map<String, Object> diffMap : diffList) {
             if (diffMap.get("type").equals("added")) {
-                resultString += " ".repeat(TWO_TIMES) + "+ " + diffMap.get("key") + ": "
-                        + String.valueOf(diffMap.get("value")) + "\n";
+                result.append(" ".repeat(TWO_TIMES) + "+ " + diffMap.get("key") + ": "
+                        + String.valueOf(diffMap.get("value")) + "\n");
             } else if (diffMap.get("type").equals("removed")) {
-                resultString += " ".repeat(TWO_TIMES) + "- " + diffMap.get("key") + ": "
-                        + String.valueOf(diffMap.get("value")) + "\n";
+                result.append(" ".repeat(TWO_TIMES) + "- " + diffMap.get("key") + ": "
+                        + String.valueOf(diffMap.get("value")) + "\n");
             } else if (diffMap.get("type").equals("none")) {
-                resultString += " ".repeat(FOUR_TIMES) + diffMap.get("key") + ": "
-                        + String.valueOf(diffMap.get("value")) + "\n";
+                result.append(" ".repeat(FOUR_TIMES) + diffMap.get("key") + ": "
+                        + String.valueOf(diffMap.get("value")) + "\n");
             } else {
-                resultString += " ".repeat(TWO_TIMES) + "- " + diffMap.get("key") + ": "
-                        + String.valueOf(diffMap.get("oldValue")) + "\n";
-                resultString += " ".repeat(TWO_TIMES) + "+ " + diffMap.get("key") + ": "
-                        + String.valueOf(diffMap.get("newValue")) + "\n";
+                result.append(" ".repeat(TWO_TIMES) + "- " + diffMap.get("key") + ": "
+                        + String.valueOf(diffMap.get("oldValue")) + "\n");
+                result.append(" ".repeat(TWO_TIMES) + "+ " + diffMap.get("key") + ": "
+                        + String.valueOf(diffMap.get("newValue")) + "\n");
             }
         }
 
-        resultString += "}";
-        return resultString;
+        result.append("}");
+        return result.toString();
     }
 }

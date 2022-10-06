@@ -8,25 +8,22 @@ import java.util.LinkedHashMap;
 public class PlainFormat {
 
     public static String convertToPlainFormat(List<Map<String, Object>> diffList) {
-        String resultString = "";
+        List<String> results = new ArrayList<>();
 
         for (Map<String, Object> diffMap : diffList) {
             if (diffMap.get("type").equals("added")) {
-                resultString += "Property '" + diffMap.get("key") + "' was added with value: "
-                        + calculateResultValue(diffMap.get("value")) + "\n";
+                results.add("Property '" + diffMap.get("key") + "' was added with value: "
+                        + calculateResultValue(diffMap.get("value")));
             } else if (diffMap.get("type").equals("removed")) {
-                resultString += "Property '" + diffMap.get("key") + "' was removed" + "\n";
+                results.add("Property '" + diffMap.get("key") + "' was removed");
             } else if (diffMap.get("type").equals("updated")) {
-                resultString += "Property '" + diffMap.get("key") + "' was updated. From "
+                results.add("Property '" + diffMap.get("key") + "' was updated. From "
                         + calculateResultValue(diffMap.get("oldValue")) + " to "
-                        + calculateResultValue(diffMap.get("newValue")) + "\n";
+                        + calculateResultValue(diffMap.get("newValue")));
             }
         }
-        if (resultString.isEmpty()) {
-            resultString = "\n";
-        }
 
-        return resultString.substring(0, resultString.lastIndexOf("\n"));
+        return String.join("\n", results);
     }
 
     public static String calculateResultValue(Object value) {

@@ -72,12 +72,9 @@ public class FormatterTest {
     @Test
     void formatterTestBaseJson() throws Exception {
         String format = "json";
-        String expectedResult = "{\n"
-                + "\"setting1\":{\"action\":\"added\",\"value\":\"Some value\"},\n"
-                + "\"default\":{\"action\":\"none\"},\n"
-                + "\"id\":{\"action\":\"removed\"},\n"
-                + "\"setting3\":{\"newValue\":[45,45,45],\"action\":\"updated\",\"previousValue\":true}\n"
-                + "}";
+        String expectedResult = "[{\"type\":\"added\",\"value\":\"Some value\",\"key\":\"setting1\"},{\"type\":"
+                + "\"none\",\"value\":null,\"key\":\"default\"},{\"type\":\"removed\",\"value\":45,\"key\":\"id\"},"
+                + "{\"newValue\":[45,45,45],\"oldValue\":true,\"type\":\"updated\",\"key\":\"setting3\"}]";
         Assertions.assertEquals(expectedResult, Formatter.toConvertWithFormat(dataList, format));
     }
 

@@ -29,9 +29,7 @@ public class JsonFormatTest {
         dataMap.put("value", "Some value");
         dataList.add(dataMap);
 
-        String expectedResult = "{\n"
-                + "\"setting1\":{\"action\":\"none\"}\n"
-                + "}";
+        String expectedResult = "[{\"type\":\"none\",\"value\":\"Some value\",\"key\":\"setting1\"}]";
         Assertions.assertEquals(expectedResult, JsonFormat.convertToJsonFormat(dataList));
     }
 
@@ -41,9 +39,7 @@ public class JsonFormatTest {
         dataMap.put("value", "Some value");
         dataList.add(dataMap);
 
-        String expectedResult = "{\n"
-                + "\"setting1\":{\"action\":\"added\",\"value\":\"Some value\"}\n"
-                + "}";
+        String expectedResult = "[{\"type\":\"added\",\"value\":\"Some value\",\"key\":\"setting1\"}]";
         Assertions.assertEquals(expectedResult, JsonFormat.convertToJsonFormat(dataList));
     }
 
@@ -53,9 +49,7 @@ public class JsonFormatTest {
         dataMap.put("value", "Some value");
         dataList.add(dataMap);
 
-        String expectedResult = "{\n"
-                + "\"setting1\":{\"action\":\"removed\"}\n"
-                + "}";
+        String expectedResult = "[{\"type\":\"removed\",\"value\":\"Some value\",\"key\":\"setting1\"}]";
         Assertions.assertEquals(expectedResult, JsonFormat.convertToJsonFormat(dataList));
     }
 
@@ -66,9 +60,8 @@ public class JsonFormatTest {
         dataMap.put("newValue", "Some value 2");
         dataList.add(dataMap);
 
-        String expectedResult = "{\n"
-                + "\"setting1\":{\"newValue\":\"Some value 2\",\"action\":\"updated\",\"previousValue\":"
-                + "\"Some value 1\"}\n}";
+        String expectedResult = "[{\"newValue\":\"Some value 2\",\"oldValue\":\"Some value 1\",\"type\":"
+                + "\"updated\",\"key\":\"setting1\"}]";
         Assertions.assertEquals(expectedResult, JsonFormat.convertToJsonFormat(dataList));
     }
 
@@ -78,9 +71,7 @@ public class JsonFormatTest {
         dataMap.put("value", "Some value");
         dataList.add(dataMap);
 
-        String expectedResult = "{\n"
-                + "\"setting1\":{\"action\":\"added\",\"value\":\"Some value\"}\n"
-                + "}";
+        String expectedResult = "[{\"type\":\"added\",\"value\":\"Some value\",\"key\":\"setting1\"}]";
         Assertions.assertEquals(expectedResult, JsonFormat.convertToJsonFormat(dataList));
     }
 
@@ -90,9 +81,7 @@ public class JsonFormatTest {
         dataMap.put("value", TEST_INT_VALUE);
         dataList.add(dataMap);
 
-        String expectedResult = "{\n"
-                + "\"setting1\":{\"action\":\"added\",\"value\":" + TEST_INT_VALUE
-                + "}\n}";
+        String expectedResult = "[{\"type\":\"added\",\"value\":" + TEST_INT_VALUE + ",\"key\":\"setting1\"}]";
         Assertions.assertEquals(expectedResult, JsonFormat.convertToJsonFormat(dataList));
     }
 
@@ -102,9 +91,7 @@ public class JsonFormatTest {
         dataMap.put("value", true);
         dataList.add(dataMap);
 
-        String expectedResult = "{\n"
-                + "\"setting1\":{\"action\":\"added\",\"value\":true}\n"
-                + "}";
+        String expectedResult = "[{\"type\":\"added\",\"value\":true,\"key\":\"setting1\"}]";
         Assertions.assertEquals(expectedResult, JsonFormat.convertToJsonFormat(dataList));
     }
 
@@ -116,10 +103,8 @@ public class JsonFormatTest {
         dataMap.put("value", nestedValue);
         dataList.add(dataMap);
 
-        String expectedResult = "{\n"
-                + "\"setting1\":{\"action\":\"added\",\"value\":[" + TEST_INT_VALUE + "," + TEST_INT_VALUE
-                + "," + TEST_INT_VALUE + "]}\n"
-                + "}";
+        String expectedResult = "[{\"type\":\"added\",\"value\":[" + TEST_INT_VALUE + ","
+                + TEST_INT_VALUE + "," + TEST_INT_VALUE + "],\"key\":\"setting1\"}]";
         Assertions.assertEquals(expectedResult, JsonFormat.convertToJsonFormat(dataList));
     }
 
@@ -130,9 +115,7 @@ public class JsonFormatTest {
         dataMap.put("value", nestedValue);
         dataList.add(dataMap);
 
-        String expectedResult = "{\n"
-                + "\"setting1\":{\"action\":\"added\",\"value\":[\"a\",\"b\",\"c\"]}\n"
-                + "}";
+        String expectedResult = "[{\"type\":\"added\",\"value\":[\"a\",\"b\",\"c\"],\"key\":\"setting1\"}]";
         Assertions.assertEquals(expectedResult, JsonFormat.convertToJsonFormat(dataList));
     }
 
@@ -143,9 +126,7 @@ public class JsonFormatTest {
         dataMap.put("value", nestedValue);
         dataList.add(dataMap);
 
-        String expectedResult = "{\n"
-                + "\"setting1\":{\"action\":\"added\",\"value\":[\"value1\",\"value2\"]}\n"
-                + "}";
+        String expectedResult = "[{\"type\":\"added\",\"value\":[\"value1\",\"value2\"],\"key\":\"setting1\"}]";
         Assertions.assertEquals(expectedResult, JsonFormat.convertToJsonFormat(dataList));
     }
 
@@ -158,9 +139,8 @@ public class JsonFormatTest {
         dataMap.put("value", nestedValue);
         dataList.add(dataMap);
 
-        String expectedResult = "{\n"
-                + "\"setting1\":{\"action\":\"added\",\"value\":{\"nestedKey\":\"value\",\"isNested\":\"true\"}}\n"
-                + "}";
+        String expectedResult = "[{\"type\":\"added\",\"value\":{\"nestedKey\":\"value\",\"isNested\":\"true\"},"
+                + "\"key\":\"setting1\"}]";
         Assertions.assertEquals(expectedResult, JsonFormat.convertToJsonFormat(dataList));
     }
 }
