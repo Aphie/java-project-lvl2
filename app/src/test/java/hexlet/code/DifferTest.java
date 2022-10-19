@@ -148,7 +148,7 @@ public class DifferTest {
         String filePath1 = "src/test/resources/differTest/differTestYml_fil";
         String filePath2 = "src/test/resources/differTest/differTestYml_file2.yml";
 
-        String expectedResult = "ERROR: ERROR: You've entered incorrect file, filename or filename that doesn't exist";
+        String expectedResult = "ERROR: You've entered incorrect file, filename or filename that doesn't exist";
 
         Assertions.assertEquals(expectedResult, Differ.generate(filePath1, filePath2, STYLISH_FORMAT));
     }
