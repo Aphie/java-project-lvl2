@@ -11,7 +11,7 @@ import java.util.Map;
 public class Formatter {
 
     public static String toConvertWithFormat(List<Map<String, Object>> diffList, String format)
-            throws JsonProcessingException, RuntimeException {
+            throws RuntimeException {
 
         return switch (format.toLowerCase()) {
             case "plain" -> PlainFormat.convertToPlainFormat(diffList);

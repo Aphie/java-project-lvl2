@@ -16,12 +16,12 @@ public class Differ {
     public static final String DEFAULT_FORMAT = "stylish";
 
     //сравнение двух файлов без переданного формата
-    public static String generate(String filePath1, String filePath2) throws JsonProcessingException {
+    public static String generate(String filePath1, String filePath2) {
         return generate(filePath1, filePath2, DEFAULT_FORMAT);
     }
 
     //сравнение двух файлов с переданным форматом
-    public static String generate(String filePath1, String filePath2, String format) throws JsonProcessingException {
+    public static String generate(String filePath1, String filePath2, String format) {
         Path file1 = Paths.get(filePath1);
         Path file2 = Paths.get(filePath2);
         Map<String, Object> data1 = new HashMap<>();
@@ -33,8 +33,8 @@ public class Differ {
             data2 = Parser.getData(filePath2, Files.readString(file2));
             diffList = DifferenceFormation.diffFormation(data1, data2);
 
-        } catch (NoSuchFileException e) {
-            return "ERROR: You've entered incorrect filename or filename that doesn't exist";
+        } catch (NoSuchFileException | JsonProcessingException e) {
+            return "ERROR: You've entered incorrect file, filename or filename that doesn't exist";
         } catch (IOException e) {
             return "ERROR: You've entered filename with incorrect format. Please, enter json or yml files only";
         }
