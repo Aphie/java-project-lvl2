@@ -10,6 +10,11 @@ public class JsonFormat {
 
     public static String convertToJsonFormat(List<Map<String, Object>> diffList) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.writeValueAsString(diffList);
+        try {
+            return objectMapper.writeValueAsString(diffList);
+        } catch (JsonProcessingException e) {
+            return e.getMessage();
+        }
+
     }
 }

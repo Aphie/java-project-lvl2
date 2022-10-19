@@ -5,7 +5,6 @@ import java.nio.file.Paths;
 
 public class Launcher {
 
-
     public static void launch(String filepath1, String filepath2, String format) throws Exception {
         String resultDiff = "";
 

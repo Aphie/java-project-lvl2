@@ -11,20 +11,14 @@ import java.util.Map;
 public class Formatter {
 
     public static String toConvertWithFormat(List<Map<String, Object>> diffList, String format)
-            throws JsonProcessingException {
-        String resultString = "";
+            throws JsonProcessingException, RuntimeException {
 
-        if (format.equals("stylish")) {
-            resultString += StylishFormat.convertToStylishFormat(diffList);
-            return resultString;
-        } else if (format.equals("plain")) {
-            resultString += PlainFormat.convertToPlainFormat(diffList);
-            return resultString;
-        } else if (format.equals("json")) {
-            resultString += JsonFormat.convertToJsonFormat(diffList);
-            return resultString;
-        } else {
-            return "No output for such format as " + format + ". Please specify existing format for information output";
-        }
+        return switch (format.toLowerCase()) {
+            case "plain" -> PlainFormat.convertToPlainFormat(diffList);
+            case "stylish" -> StylishFormat.convertToStylishFormat(diffList);
+            case "json" -> JsonFormat.convertToJsonFormat(diffList);
+            default -> throw new RuntimeException("No output for such format as "
+                    + format + ". Please specify existing format for information output");
+        };
     }
 }
