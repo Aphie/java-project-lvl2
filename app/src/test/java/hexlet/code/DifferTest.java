@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Paths;
 
 public class DifferTest {
@@ -141,5 +142,26 @@ public class DifferTest {
                 Files.readString(Paths.get("src/test/resources/differTest/differTestYml_expected.txt"));
 
         Assertions.assertEquals(expected, Differ.generate(filePath1, filePath2, STYLISH_FORMAT));
+    }
+
+    @Test
+    void parserTestNoFormat() throws Exception {
+        String filePath1 = "src/test/resources/differTest/differTestYml_fil";
+        String filePath2 = "src/test/resources/differTest/differTestYml_file2.yml";
+
+        String expectedResult = "ERROR: You've entered incorrect filename or filename that doesn't exist";
+
+        Assertions.assertEquals(expectedResult, Differ.generate(filePath1, filePath2, STYLISH_FORMAT));
+    }
+
+    @Test
+    void parserTestIncorrectFormat() throws Exception {
+        String filePath1 = "src/test/resources/differTest/incorrectFormat.gif";
+        String filePath2 = "src/test/resources/differTest/differTestYml_file2.yml";
+
+        String expectedResult = "ERROR: You've entered filename with incorrect format. "
+                + "Please, enter json or yml files only";
+
+        Assertions.assertEquals(expectedResult, Differ.generate(filePath1, filePath2, STYLISH_FORMAT));
     }
 }

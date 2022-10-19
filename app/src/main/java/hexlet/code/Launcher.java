@@ -17,6 +17,7 @@ public class Launcher {
             resultDiff = Differ.generate(filepath1, filepath2, format);
         }
         System.out.println(resultDiff);
+
     }
 
     public static String checkAndConvertPaths(String filepath) {

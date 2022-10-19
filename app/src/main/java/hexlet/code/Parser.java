@@ -1,22 +1,22 @@
 package hexlet.code;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.MapType;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
+import java.nio.file.NoSuchFileException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Parser {
-    public static Map<String, Object> getData(String filepath, String content) throws Exception {
+    public static Map<String, Object> getData(String filepath, String content)
+            throws JsonProcessingException {
         String format = filepath.substring(filepath.lastIndexOf('/') + 1);
         int dotIndex = format.lastIndexOf('.');
         Map<String, Object> parsedData = new HashMap<>();
 
-        if (!format.contains(".")) {
-            throw new Exception("ERROR: You entered filename without file format");
-        }
         if (!content.isEmpty()) {
             if ((format.substring(dotIndex  + 1)).equals("json")) {
                 ObjectMapper objectMapper = new ObjectMapper();
@@ -26,8 +26,6 @@ public class Parser {
             } else if ((format.substring(dotIndex  + 1)).equals("yml")) {
                 ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
                 parsedData = mapper.readValue(content, new TypeReference<Map<String, Object>>() { });
-            } else {
-                throw new Exception("ERROR: You tried to parse file with incorrect format");
             }
         }
         return parsedData;
