@@ -117,7 +117,7 @@ public class DifferTest {
     }
 
     @Test
-    void formatterTestIncorrectFormat() throws Exception {
+    void differTestIncorrectFormat() throws Exception {
         String filePath1 = "src/test/resources/differTest/differTestBase_file1.json";
         String filePath2 = "src/test/resources/differTest/differTestBase_file2.json";
         String format = "style";
@@ -133,7 +133,7 @@ public class DifferTest {
     }
 
     @Test
-    void formatterTestYml() throws Exception {
+    void differTestYml() throws Exception {
         String filePath1 = "src/test/resources/differTest/differTestYml_file1.yml";
         String filePath2 = "src/test/resources/differTest/differTestYml_file2.yml";
 
@@ -144,7 +144,7 @@ public class DifferTest {
     }
 
     @Test
-    void parserTestNoFormat() throws Exception {
+    void differTestNoFormat() throws Exception {
         String filePath1 = "src/test/resources/differTest/differTestYml_fil";
         String filePath2 = "src/test/resources/differTest/differTestYml_file2.yml";
 
@@ -154,7 +154,7 @@ public class DifferTest {
     }
 
     @Test
-    void parserTestIncorrectFormat() throws Exception {
+    void differTestIncorrectFileFormat() throws Exception {
         String filePath1 = "src/test/resources/differTest/incorrectFormat.gif";
         String filePath2 = "src/test/resources/differTest/differTestYml_file2.yml";
 
@@ -163,4 +163,5 @@ public class DifferTest {
 
         Assertions.assertEquals(expectedResult, Differ.generate(filePath1, filePath2, STYLISH_FORMAT));
     }
+
 }

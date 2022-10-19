@@ -33,7 +33,7 @@ public class Differ {
             data2 = Parser.getData(filePath2, Files.readString(file2));
             diffList = DifferenceFormation.diffFormation(data1, data2);
 
-        } catch (NoSuchFileException | JsonProcessingException e) {
+        } catch (NoSuchFileException e) {
             return "ERROR: You've entered incorrect filename or filename that doesn't exist";
         } catch (IOException e) {
             return "ERROR: You've entered filename with incorrect format. Please, enter json or yml files only";

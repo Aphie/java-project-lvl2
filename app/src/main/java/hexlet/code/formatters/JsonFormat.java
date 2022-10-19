@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class JsonFormat {
 
-    public static String convertToJsonFormat(List<Map<String, Object>> diffList) throws JsonProcessingException {
+    public static String convertToJsonFormat(List<Map<String, Object>> diffList) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             return objectMapper.writeValueAsString(diffList);
