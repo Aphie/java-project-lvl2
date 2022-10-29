@@ -1,8 +1,13 @@
 package hexlet.code;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import picocli.CommandLine;
 import picocli.CommandLine.Option;
 
+import java.io.IOException;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.concurrent.Callable;
 
 @CommandLine.Command(name = "App", header = "Compares two configuration files and shows a difference.", version = "1.0")
@@ -14,7 +19,7 @@ public class App implements Callable<String> {
     @CommandLine.Parameters(paramLabel = "filepath2", description = "path to second file")
     private static String filepath2;
 
-    @Option(names = { "-f", "--format" }, description = "output format [default: stylish]")
+    @Option(names = { "-f", "--format" }, defaultValue = "stylish", description = "output format [default: stylish]")
     private static String format;
 
     @Option(names = { "-h", "--help" }, usageHelp = true, description = "Show this help message and exit.")
@@ -24,13 +29,30 @@ public class App implements Callable<String> {
     private static boolean versionRequested;
 
     @Override
-    public final String call() throws Exception {
+    public final String call() {
+        String resultDiff = "";
 
-        Launcher.launch(filepath1, filepath2, format);
+        filepath1 = checkAndConvertPaths(filepath1);
+        filepath2 = checkAndConvertPaths(filepath2);
+
+        try {
+            resultDiff = Differ.generate(filepath1, filepath2, format);
+            System.out.println(resultDiff);
+        }  catch (IOException e) {
+            System.out.println("ERROR: You've entered incorrect file, format or file that doesn't exist");
+        }
         return null;
     }
 
-    public static void main(String[] args) throws Exception {
+    public static String checkAndConvertPaths(String filepath) {
+        Path file = Paths.get(filepath);
+        if (!file.isAbsolute()) {
+            filepath = file.toAbsolutePath().toString();
+        }
+        return filepath;
+    }
+
+    public static void main(String[] args) {
         int exitCode = new CommandLine(new App()).execute(args);
         System.exit(exitCode);
     }

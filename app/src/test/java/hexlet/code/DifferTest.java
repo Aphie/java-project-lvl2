@@ -1,10 +1,13 @@
 package hexlet.code;
 
+import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.nio.charset.MalformedInputException;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Paths;
 
 public class DifferTest {
@@ -17,7 +20,7 @@ public class DifferTest {
     }
 
     @Test
-    void differTestBaseWithFormat() throws Exception {
+    void differTestBaseWithFormat() throws IOException {
         String filePath1 = "src/test/resources/differTest/differTestBase_file1.json";
         String filePath2 = "src/test/resources/differTest/differTestBase_file2.json";
 
@@ -27,7 +30,7 @@ public class DifferTest {
     }
 
     @Test
-    void differTestBaseWithoutFormat() throws Exception {
+    void differTestBaseWithoutFormat() throws IOException {
         String filePath1 = "src/test/resources/differTest/differTestBase_file1.json";
         String filePath2 = "src/test/resources/differTest/differTestBase_file2.json";
 
@@ -37,35 +40,43 @@ public class DifferTest {
     }
 
     @Test
-    void differTestFirstFileEmpty() throws Exception {
+    void differTestFirstFileEmpty() {
         String filePath1 = "src/test/resources/differTest/differTestFirstFileEmpty_file1.json";
         String filePath2 = "src/test/resources/differTest/differTestFirstFileEmpty_file2.json";
 
-        String expected = toReadFile("src/test/resources/differTest/differTestFirstFileEmpty_expected.txt");
-
-        Assertions.assertEquals(expected, Differ.generate(filePath1, filePath2));
+        try {
+            Differ.generate(filePath1, filePath2, STYLISH_FORMAT);
+        } catch (IOException e) {
+            Assertions.assertEquals(MismatchedInputException.class, e.getClass());
+        }
     }
 
     @Test
-    void differTestSecondFileEmpty() throws Exception {
+    void differTestSecondFileEmpty() {
         String filePath1 = "src/test/resources/differTest/differTestSecondFileEmpty_file1.json";
         String filePath2 = "src/test/resources/differTest/differTestSecondFileEmpty_file2.json";
 
-        String expected = toReadFile("src/test/resources/differTest/differTestSecondFileEmpty_expected.txt");
-        Assertions.assertEquals(expected, Differ.generate(filePath1, filePath2, STYLISH_FORMAT));
+        try {
+            Differ.generate(filePath1, filePath2, STYLISH_FORMAT);
+        } catch (IOException e) {
+            Assertions.assertEquals(MismatchedInputException.class, e.getClass());
+        }
     }
 
     @Test
-    void differTestBothFileEmpty() throws Exception {
+    void differTestBothFileEmpty() {
         String filePath1 = "src/test/resources/differTest/differTestBothFileEmpty_file1.json";
         String filePath2 = "src/test/resources/differTest/differTestBothFileEmpty_file2.json";
 
-        String expected = "{\n}";
-        Assertions.assertEquals(expected, Differ.generate(filePath1, filePath2, STYLISH_FORMAT));
+        try {
+            Differ.generate(filePath1, filePath2, STYLISH_FORMAT);
+        } catch (IOException e) {
+            Assertions.assertEquals(MismatchedInputException.class, e.getClass());
+        }
     }
 
     @Test
-    void differTestBothFileSame() throws Exception {
+    void differTestBothFileSame() throws IOException {
         String filePath1 = "src/test/resources/differTest/differTestbothFileSame_file1.json";
         String filePath2 = "src/test/resources/differTest/differTestbothFileSame_file2.json";
 
@@ -75,7 +86,7 @@ public class DifferTest {
     }
 
     @Test
-    void differTestAllLinesDeleted() throws Exception {
+    void differTestAllLinesDeleted() throws IOException {
         String filePath1 = "src/test/resources/differTest/differTestAllLinesDeleted_file1.json";
         String filePath2 = "src/test/resources/differTest/differTestAllLinesDeleted_file2.json";
 
@@ -85,7 +96,7 @@ public class DifferTest {
     }
 
     @Test
-    void differTestAllLinesChanged() throws Exception {
+    void differTestAllLinesChanged() throws IOException {
         String filePath1 = "src/test/resources/differTest/differTestAllLinesChanged_file1.json";
         String filePath2 = "src/test/resources/differTest/differTestAllLinesChanged_file2.json";
 
@@ -95,7 +106,7 @@ public class DifferTest {
     }
 
     @Test
-    void differTestJsonFormat() throws Exception {
+    void differTestJsonFormat() throws IOException {
         String filePath1 = "src/test/resources/differTest/differTestBase_file1.json";
         String filePath2 = "src/test/resources/differTest/differTestBase_file2.json";
 
@@ -105,7 +116,7 @@ public class DifferTest {
     }
 
     @Test
-    void differTestPlainFormat() throws Exception {
+    void differTestPlainFormat() throws IOException {
         String filePath1 = "src/test/resources/differTest/differTestBase_file1.json";
         String filePath2 = "src/test/resources/differTest/differTestBase_file2.json";
 
@@ -116,7 +127,7 @@ public class DifferTest {
     }
 
     @Test
-    void differTestIncorrectFormat() throws Exception {
+    void differTestIncorrectFormat() throws IOException {
         String filePath1 = "src/test/resources/differTest/differTestBase_file1.json";
         String filePath2 = "src/test/resources/differTest/differTestBase_file2.json";
         String format = "style";
@@ -131,7 +142,7 @@ public class DifferTest {
     }
 
     @Test
-    void differTestYml() throws Exception {
+    void differTestYml() throws IOException {
         String filePath1 = "src/test/resources/differTest/differTestYml_file1.yml";
         String filePath2 = "src/test/resources/differTest/differTestYml_file2.yml";
 
@@ -141,24 +152,27 @@ public class DifferTest {
     }
 
     @Test
-    void differTestNoFormat() throws Exception {
+    void differTestNoFormat() {
         String filePath1 = "src/test/resources/differTest/differTestYml_fil";
         String filePath2 = "src/test/resources/differTest/differTestYml_file2.yml";
 
-        String expectedResult = "ERROR: You've entered incorrect file, filename or filename that doesn't exist";
-
-        Assertions.assertEquals(expectedResult, Differ.generate(filePath1, filePath2, STYLISH_FORMAT));
+        try {
+            Differ.generate(filePath1, filePath2, STYLISH_FORMAT);
+        } catch (IOException e) {
+            Assertions.assertEquals(NoSuchFileException.class, e.getClass());
+        }
     }
 
     @Test
-    void differTestIncorrectFileFormat() throws Exception {
+    void differTestIncorrectFileFormat() {
         String filePath1 = "src/test/resources/differTest/incorrectFormat.gif";
         String filePath2 = "src/test/resources/differTest/differTestYml_file2.yml";
 
-        String expectedResult = "ERROR: You've entered filename with incorrect format. "
-                + "Please, enter json or yml files only";
-
-        Assertions.assertEquals(expectedResult, Differ.generate(filePath1, filePath2, STYLISH_FORMAT));
+        try {
+            Differ.generate(filePath1, filePath2, STYLISH_FORMAT);
+        } catch (IOException e) {
+            Assertions.assertEquals(MalformedInputException.class, e.getClass());
+        }
     }
 
 }
