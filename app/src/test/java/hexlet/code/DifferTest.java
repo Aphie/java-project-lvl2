@@ -3,6 +3,7 @@ package hexlet.code;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -11,12 +12,16 @@ public class DifferTest {
     public static final String PLAIN_FORMAT = "plain";
     public static final String JSON_FORMAT = "json";
 
+    public static String toReadFile (String path) throws IOException {
+        return Files.readString(Paths.get(path));
+    }
+
     @Test
     void differTestBaseWithFormat() throws Exception {
         String filePath1 = "src/test/resources/differTest/differTestBase_file1.json";
         String filePath2 = "src/test/resources/differTest/differTestBase_file2.json";
 
-        String expected = Files.readString(Paths.get("src/test/resources/differTest/differTestBase_expected.txt"));
+        String expected = toReadFile("src/test/resources/differTest/differTestBase_expected.txt");
 
         Assertions.assertEquals(expected, Differ.generate(filePath1, filePath2, STYLISH_FORMAT));
     }
@@ -26,7 +31,7 @@ public class DifferTest {
         String filePath1 = "src/test/resources/differTest/differTestBase_file1.json";
         String filePath2 = "src/test/resources/differTest/differTestBase_file2.json";
 
-        String expected = Files.readString(Paths.get("src/test/resources/differTest/differTestBase_expected.txt"));
+        String expected = toReadFile("src/test/resources/differTest/differTestBase_expected.txt");
 
         Assertions.assertEquals(expected, Differ.generate(filePath1, filePath2));
     }
@@ -36,8 +41,7 @@ public class DifferTest {
         String filePath1 = "src/test/resources/differTest/differTestFirstFileEmpty_file1.json";
         String filePath2 = "src/test/resources/differTest/differTestFirstFileEmpty_file2.json";
 
-        String expected =
-                Files.readString(Paths.get("src/test/resources/differTest/differTestFirstFileEmpty_expected.txt"));
+        String expected = toReadFile("src/test/resources/differTest/differTestFirstFileEmpty_expected.txt");
 
         Assertions.assertEquals(expected, Differ.generate(filePath1, filePath2));
     }
@@ -47,8 +51,7 @@ public class DifferTest {
         String filePath1 = "src/test/resources/differTest/differTestSecondFileEmpty_file1.json";
         String filePath2 = "src/test/resources/differTest/differTestSecondFileEmpty_file2.json";
 
-        String expected = Files.readString(
-                Paths.get("src/test/resources/differTest/differTestSecondFileEmpty_expected.txt"));
+        String expected = toReadFile("src/test/resources/differTest/differTestSecondFileEmpty_expected.txt");
         Assertions.assertEquals(expected, Differ.generate(filePath1, filePath2, STYLISH_FORMAT));
     }
 
@@ -66,8 +69,7 @@ public class DifferTest {
         String filePath1 = "src/test/resources/differTest/differTestbothFileSame_file1.json";
         String filePath2 = "src/test/resources/differTest/differTestbothFileSame_file2.json";
 
-        String expected = Files.readString(
-                Paths.get("src/test/resources/differTest/differTestbothFileSame_expected.txt"));
+        String expected = toReadFile("src/test/resources/differTest/differTestbothFileSame_expected.txt");
 
         Assertions.assertEquals(expected, Differ.generate(filePath1, filePath2, STYLISH_FORMAT));
     }
@@ -77,8 +79,7 @@ public class DifferTest {
         String filePath1 = "src/test/resources/differTest/differTestAllLinesDeleted_file1.json";
         String filePath2 = "src/test/resources/differTest/differTestAllLinesDeleted_file2.json";
 
-        String expected = Files.readString(
-                Paths.get("src/test/resources/differTest/differTestAllLinesDeleted_expected.txt"));
+        String expected = toReadFile("src/test/resources/differTest/differTestAllLinesDeleted_expected.txt");
 
         Assertions.assertEquals(expected, Differ.generate(filePath1, filePath2, STYLISH_FORMAT));
     }
@@ -88,8 +89,7 @@ public class DifferTest {
         String filePath1 = "src/test/resources/differTest/differTestAllLinesChanged_file1.json";
         String filePath2 = "src/test/resources/differTest/differTestAllLinesChanged_file2.json";
 
-        String expected = Files.readString(
-                Paths.get("src/test/resources/differTest/differTestAllLinesChanged_expected.txt"));
+        String expected = toReadFile("src/test/resources/differTest/differTestAllLinesChanged_expected.txt");
 
         Assertions.assertEquals(expected, Differ.generate(filePath1, filePath2));
     }
@@ -99,8 +99,7 @@ public class DifferTest {
         String filePath1 = "src/test/resources/differTest/differTestBase_file1.json";
         String filePath2 = "src/test/resources/differTest/differTestBase_file2.json";
 
-        String expected =
-                Files.readString(Paths.get("src/test/resources/differTest/differTestJsonFormat_expected.txt"));
+        String expected = toReadFile("src/test/resources/differTest/differTestJsonFormat_expected.txt");
 
         Assertions.assertEquals(expected, Differ.generate(filePath1, filePath2, JSON_FORMAT));
     }
@@ -111,7 +110,7 @@ public class DifferTest {
         String filePath2 = "src/test/resources/differTest/differTestBase_file2.json";
 
         String expected =
-                Files.readString(Paths.get("src/test/resources/differTest/differTestPlainFormat_expected.txt"));
+                toReadFile("src/test/resources/differTest/differTestPlainFormat_expected.txt");
 
         Assertions.assertEquals(expected, Differ.generate(filePath1, filePath2, PLAIN_FORMAT));
     }
@@ -128,7 +127,6 @@ public class DifferTest {
             Differ.generate(filePath1, filePath2, format);
         } catch (RuntimeException e) {
             Assertions.assertEquals(expectedResult, e.getMessage());
-
         }
     }
 
@@ -137,8 +135,7 @@ public class DifferTest {
         String filePath1 = "src/test/resources/differTest/differTestYml_file1.yml";
         String filePath2 = "src/test/resources/differTest/differTestYml_file2.yml";
 
-        String expected =
-                Files.readString(Paths.get("src/test/resources/differTest/differTestYml_expected.txt"));
+        String expected = toReadFile("src/test/resources/differTest/differTestYml_expected.txt");
 
         Assertions.assertEquals(expected, Differ.generate(filePath1, filePath2, STYLISH_FORMAT));
     }
