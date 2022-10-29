@@ -1,11 +1,9 @@
 package hexlet.code;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import picocli.CommandLine;
 import picocli.CommandLine.Option;
 
 import java.io.IOException;
-import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.Callable;
