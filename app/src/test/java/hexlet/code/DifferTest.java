@@ -12,7 +12,7 @@ public class DifferTest {
     public static final String PLAIN_FORMAT = "plain";
     public static final String JSON_FORMAT = "json";
 
-    public static String toReadFile (String path) throws IOException {
+    public static String toReadFile(String path) throws IOException {
         return Files.readString(Paths.get(path));
     }
 
