@@ -4,12 +4,10 @@ import picocli.CommandLine;
 import picocli.CommandLine.Option;
 
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.concurrent.Callable;
 
 @CommandLine.Command(name = "App", header = "Compares two configuration files and shows a difference.", version = "1.0")
-public class App implements Callable<String> {
+public class App implements Callable<Integer> {
 
     @CommandLine.Parameters(paramLabel = "filepath1", description = "path to first file")
     private static String filepath1;
@@ -27,11 +25,8 @@ public class App implements Callable<String> {
     private static boolean versionRequested;
 
     @Override
-    public final String call() {
+    public final Integer call() {
         String resultDiff = "";
-
-        filepath1 = checkAndConvertPaths(filepath1);
-        filepath2 = checkAndConvertPaths(filepath2);
 
         try {
             resultDiff = Differ.generate(filepath1, filepath2, format);
@@ -39,15 +34,7 @@ public class App implements Callable<String> {
         }  catch (IOException e) {
             System.out.println("ERROR: You've entered incorrect file, format or file that doesn't exist");
         }
-        return null;
-    }
-
-    public static String checkAndConvertPaths(String filepath) {
-        Path file = Paths.get(filepath);
-        if (!file.isAbsolute()) {
-            filepath = file.toAbsolutePath().toString();
-        }
-        return filepath;
+        return 0;
     }
 
     public static void main(String[] args) {
